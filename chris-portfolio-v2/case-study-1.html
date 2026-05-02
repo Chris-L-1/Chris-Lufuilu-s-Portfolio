@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn UX Audit by Chris Lufuilu</title>
+    <meta name="description"
+      content="Case study: LinkedIn Liked Content Retrieval Failure, a full UX audit and redesign by Chris Lufuilu." />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .cs-stat-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+      .cs-stat {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .cs-stat-number {
+        font-family: var(--font-display);
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .cs-stat-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+
+      .benchmark-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+      }
+      .benchmark-table th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border);
+      }
+      .benchmark-table td {
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-primary);
+      }
+      .benchmark-table tr:last-child td { border-bottom: none; }
+      .benchmark-table tr.linkedin-row td { color: var(--accent); font-weight: 500; }
+      .badge-pass { font-size: 0.8rem; color: #4caf50; }
+      .badge-fail { font-size: 0.8rem; color: #e05252; }
+
+      .journey-steps { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+      .journey-step { display: grid; grid-template-columns: 48px 1fr; gap: 1rem; }
+      .journey-step-left { display: flex; flex-direction: column; align-items: center; }
+      .journey-step-num {
+        width: 32px; height: 32px; border-radius: 50%;
+        background: var(--bg-card); border: 1px solid var(--border);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.72rem; font-weight: 600; color: var(--text-secondary);
+        flex-shrink: 0;
+      }
+      .journey-step.broken .journey-step-num { border-color: rgba(224,82,82,0.5); color: #e05252; }
+      .journey-step-line { width: 1px; flex: 1; background: var(--border); margin: 4px 0; min-height: 24px; }
+      .journey-step:last-child .journey-step-line { display: none; }
+      .journey-step-body { padding: 0 0 1.5rem 0; }
+      .journey-step-title { font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem; font-size: 0.95rem; }
+      .journey-step-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+      .ia-failures { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+      .ia-failure {
+        display: grid; grid-template-columns: 40px 1fr; gap: 1rem;
+        background: var(--bg-card); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.25rem;
+      }
+      .ia-failure-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--accent); line-height: 1; }
+      .ia-failure h4 { color: var(--text-primary); font-weight: 500; margin-bottom: 0.3rem; font-size: 0.95rem; }
+      .ia-failure p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+      .solution-code {
+        background: #0d1117; border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 1.5rem; font-family: var(--font-mono); font-size: 0.82rem;
+        line-height: 1.8; color: #c9d1d9; margin: 1.5rem 0; overflow-x: auto;
+      }
+      .solution-code .label { color: var(--accent); font-weight: 500; }
+      .solution-code .dim { color: #6e7681; }
+      .solution-code .highlight { color: #79c0ff; }
+
+      .persona-card {
+        background: var(--bg-card); border: 1px solid var(--border);
+        border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0;
+      }
+      .persona-header {
+        display: flex; align-items: center; gap: 1.5rem;
+        margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+      }
+      .persona-avatar {
+        width: 56px; height: 56px; border-radius: 50%;
+        background: var(--accent-dim); border: 1px solid var(--border-accent);
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-display); font-size: 1.4rem; color: var(--accent);
+        font-weight: 300; flex-shrink: 0;
+      }
+      .persona-name { font-weight: 600; color: var(--text-primary); font-size: 1.1rem; }
+      .persona-role { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.15rem; }
+      .persona-quote {
+        font-family: var(--font-display); font-size: 1.15rem; font-style: italic;
+        color: var(--text-primary); border-left: 2px solid var(--accent);
+        padding-left: 1.25rem; margin-bottom: 1.5rem; line-height: 1.5;
+      }
+      .persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+      .persona-section-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+      .persona-list { list-style: none; padding: 0; }
+      .persona-list li { font-size: 0.82rem; color: var(--text-secondary); padding: 0.2rem 0 0.2rem 0.75rem; position: relative; }
+      .persona-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+
+      .wireframe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+      .wireframe-img {
+        aspect-ratio: 9/16; background: var(--bg-card); border: 1px solid var(--border);
+        border-radius: var(--radius); display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 0.5rem;
+        color: var(--text-muted); font-size: 0.7rem; text-align: center;
+        padding: 0; margin-bottom: 0.75rem; overflow: hidden; position: relative;
+      }
+      .wireframe-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--bg-card); border-radius: var(--radius); }
+      .wireframe-label { font-size: 0.8rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.2rem; }
+      .wireframe-annotation { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; }
+
+      .test-plan { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; }
+      .test-plan-row { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+      .test-plan-row:last-child { border-bottom: none; padding-bottom: 0; }
+      .test-plan-row:first-child { padding-top: 0; }
+      .test-plan-key { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); padding-top: 0.1rem; }
+      .test-plan-val { font-size: 0.88rem; color: var(--text-primary); line-height: 1.6; }
+      .test-plan-val ul { list-style: none; padding: 0; margin-top: 0.25rem; }
+      .test-plan-val ul li { padding: 0.2rem 0 0.2rem 1rem; position: relative; font-size: 0.85rem; color: var(--text-secondary); }
+      .test-plan-val ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+      .strategic-block {
+        background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-hover) 100%);
+        border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0;
+      }
+      .strategic-block p { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: var(--text-primary); line-height: 1.6; margin: 0; }
+
+      .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+      .level-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+      .level-tag { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+      .level-card h4 { color: var(--text-primary); font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; }
+      .level-card p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+      @media (max-width: 600px) {
+        .benchmark-table { font-size: 0.78rem; }
+        .benchmark-table th, .benchmark-table td { padding: 0.5rem 0.5rem; }
+        .test-plan-row { grid-template-columns: 1fr; gap: 0.2rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+    <div class="page-transition"></div>
+
+    <nav>
+      <div class="container">
+        <div class="nav-inner">
+          <a href="index.html" class="nav-logo">L<span>.</span>Chris</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html" class="active">Work</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+          </button>
+          <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu">
+      <span class="menu-label">Navigation</span>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="work.html">Work</a>
+      <a href="process.html">Process</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <header class="case-hero">
+      <div class="container">
+        <a href="work.html" class="case-back">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4L3 8l4 4" /></svg>
+          Back to Work
+        </a>
+        <div class="section-label reveal">Case Study 001</div>
+        <h1 class="display-title reveal reveal-delay-1">
+          LinkedIn <em>Liked Content</em><br />Retrieval Failure.
+        </h1>
+        <div class="case-meta reveal reveal-delay-2">
+          <div class="case-meta-item">
+            <div class="case-meta-label">Role</div>
+            <div class="case-meta-value">UX Researcher &amp; Designer</div>
+          </div>
+          <div class="case-meta-item">
+            <div class="case-meta-label">Methods</div>
+            <div class="case-meta-value">Self-Ethnography · Behavioral Analysis · IA Audit · Wireframing</div>
+          </div>
+          <div class="case-meta-item">
+            <div class="case-meta-label">Tools</div>
+            <div class="case-meta-value">Figma · Google Docs</div>
+          </div>
+          <div class="case-meta-item">
+            <div class="case-meta-label">Year</div>
+            <div class="case-meta-value">2026</div>
+          </div>
+        </div>
+        <div class="reveal" style="border-radius:var(--radius-lg); overflow:hidden; background:#0e1a2e; margin-top:2rem;">
+          <img src="images/cs1-hero.png" alt="LinkedIn wireframe overview" style="width:100%;height:auto;display:block;">
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container" style="max-width:860px;">
+
+        <!-- Stats -->
+        <div class="cs-stat-row reveal">
+          <div class="cs-stat"><div class="cs-stat-number">6</div><div class="cs-stat-label">Steps to find liked content</div></div>
+          <div class="cs-stat"><div class="cs-stat-number">2</div><div class="cs-stat-label">Industry standard (taps)</div></div>
+          <div class="cs-stat"><div class="cs-stat-number">3×</div><div class="cs-stat-label">More steps than every competitor</div></div>
+          <div class="cs-stat"><div class="cs-stat-number">6</div><div class="cs-stat-label">Stages of UX process completed</div></div>
+        </div>
+
+        <!-- Overview -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Project Overview</h2>
+          <p>LinkedIn allows users to react to posts but makes retrieving those reactions require 6 separate steps buried deep within profile navigation. This creates a significant gap between what the platform promises and what it actually delivers.</p>
+          <p>This case study documents a full UX audit and redesign of LinkedIn's liked content retrieval experience, covering empathy research and behavioral analysis through to information architecture, wireframing, usability testing, and strategic business impact assessment.</p>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.5rem;">
+            <span class="tag">UX Research</span>
+            <span class="tag">Information Architecture</span>
+            <span class="tag">Wireframing</span>
+            <span class="tag">User Flow Design</span>
+            <span class="tag">Usability Testing</span>
+            <span class="tag">Strategic Thinking</span>
+          </div>
+        </section>
+
+        <!-- Problem -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">The Problem</h2>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;">
+            <p style="font-family:var(--font-display);font-size:1.25rem;font-weight:300;font-style:italic;color:var(--text-primary);margin:0;line-height:1.55;">"Young professionals using LinkedIn to build their careers need a way to effortlessly save and retrieve content that supports their growth — because the current experience is so confusing and poorly structured that it signals the platform was never designed with them in mind."</p>
+          </div>
+          <p>Through personal use and behavioral analysis, I identified that users who cannot quickly retrieve liked content abandon the behavior entirely. This is a silent but significant engagement failure. LinkedIn violates the universal Save &amp; Retrieve mental model established by every major social platform, where liked content is accessible within 1 to 2 taps maximum.</p>
+          <p>Three cognitive biases compound the problem: <strong>Familiarity Bias</strong> (users expect a familiar pattern that doesn't exist), <strong>Paradox of Choice</strong> (6 equally weighted tabs overwhelm users), and the <strong>Von Restorff Effect</strong> (no visual distinction draws attention to the Reactions tab).</p>
+        </section>
+
+        <!-- Benchmark -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Industry Benchmark</h2>
+          <p>To establish whether LinkedIn's approach represents a design failure or an industry norm, I compared liked content retrieval across major platforms:</p>
+          <table class="benchmark-table">
+            <thead>
+              <tr><th>Platform</th><th>Steps</th><th>Visible on profile?</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Twitter / X</td><td>2 taps</td><td><span class="badge-pass">✓ Yes, immediately</span></td></tr>
+              <tr><td>Instagram</td><td>2 taps</td><td><span class="badge-pass">✓ Yes, immediately</span></td></tr>
+              <tr><td>TikTok</td><td>2 taps</td><td><span class="badge-pass">✓ Yes, immediately</span></td></tr>
+              <tr><td>YouTube</td><td>2 taps</td><td><span class="badge-pass">✓ Library → Liked Videos</span></td></tr>
+              <tr class="linkedin-row"><td>LinkedIn</td><td>6 steps</td><td><span class="badge-fail">✗ Hidden behind multiple layers</span></td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.85rem;color:var(--text-secondary);">LinkedIn requires 3× more steps than every comparable platform. This is not an industry norm — it is a significant outlier.</p>
+        </section>
+
+        <!-- Broken Journey -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">The Broken Journey</h2>
+          <p>Through direct behavioral observation I mapped the complete flow a user must complete to access content they previously liked:</p>
+          <div class="journey-steps">
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">1</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">Home Feed</div><div class="journey-step-desc">Zero visible entry point to liked content from the bottom navigation or home screen.</div></div>
+            </div>
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">2</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">Navigate to Profile Sidebar</div><div class="journey-step-desc">"Saved posts" exists as a menu item but liked content has no equivalent. Inconsistent architecture revealed.</div></div>
+            </div>
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">3</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">All Activity — Version 1</div><div class="journey-step-desc">Wrong page. Shows others' activity ON the user, not content the user liked. Tabs cut off with no scroll signal.</div></div>
+            </div>
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">4</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">Navigate Deeper into Profile</div><div class="journey-step-desc">User still lost with no clear direction toward liked content.</div></div>
+            </div>
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">5</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">All Activity — Version 2 (same name, different content)</div><div class="journey-step-desc">Identical page title, completely different content. "Reactions" tab buried last in 6 equally-weighted options with no visual hierarchy.</div></div>
+            </div>
+            <div class="journey-step broken">
+              <div class="journey-step-left"><div class="journey-step-num">6</div><div class="journey-step-line"></div></div>
+              <div class="journey-step-body"><div class="journey-step-title">Finally Reach Liked Content</div><div class="journey-step-desc">With zero confidence the journey is complete. Most users abandon before reaching here.</div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Persona -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">User Persona</h2>
+          <p>Based on behavioral research, I developed a representative persona for the affected user segment:</p>
+          <div class="persona-card">
+            <div class="persona-header">
+              <div class="persona-avatar">TM</div>
+              <div>
+                <div class="persona-name">Thabo M.</div>
+                <div class="persona-role">Logistics Coordinator · Cape Town, Woodstock · Age 24 · Android user</div>
+              </div>
+            </div>
+            <div class="persona-quote">"I just want LinkedIn to feel like it was built for me too, not only for people who already made it."</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.25rem;font-size:0.78rem;color:var(--text-secondary);">
+              <span>Tech comfort <strong style="color:var(--text-primary)">Moderate</strong></span>
+              <span>LinkedIn use <strong style="color:var(--text-primary)">Daily 10–20 min</strong></span>
+              <span>Career stage <strong style="color:var(--text-primary)">Breaking in</strong></span>
+            </div>
+            <div class="persona-grid">
+              <div>
+                <div class="persona-section-label">Surface Goals</div>
+                <ul class="persona-list">
+                  <li>Find liked posts in 1–2 taps</li>
+                  <li>LinkedIn to feel inclusive</li>
+                  <li>Platform built for all career stages</li>
+                </ul>
+              </div>
+              <div>
+                <div class="persona-section-label">Deep Goals</div>
+                <ul class="persona-list">
+                  <li>Feel visible to the right people</li>
+                  <li>Feel like he belongs here</li>
+                  <li>Move forward in life, not just his job</li>
+                </ul>
+              </div>
+              <div>
+                <div class="persona-section-label">Frustrations</div>
+                <ul class="persona-list">
+                  <li>6 steps for a 2-tap task</li>
+                  <li>Two "All Activity" pages, different content</li>
+                  <li>Platform feels built for the already-established</li>
+                </ul>
+              </div>
+              <div>
+                <div class="persona-section-label">Behaviors</div>
+                <ul class="persona-list">
+                  <li>Takes screenshots, never revisits them</li>
+                  <li>Abandons search after 2–3 steps</li>
+                  <li>Scrolls past value because retrieval feels pointless</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- IA Failures -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Information Architecture Failures</h2>
+          <p>The LinkedIn liked content failure is fundamentally an IA problem, not a visual design problem. Five structural failures compound to create the broken experience:</p>
+          <div class="ia-failures">
+            <div class="ia-failure">
+              <div class="ia-failure-num">01</div>
+              <div><h4>No Front Door</h4><p>Liked content has no entry point from global bottom navigation. Users must already know where to look before they can begin searching.</p></div>
+            </div>
+            <div class="ia-failure">
+              <div class="ia-failure-num">02</div>
+              <div><h4>Duplicate Page Naming</h4><p>Two pages share the identical label "All Activity" but display completely different content. Users cannot build an accurate mental map of the app.</p></div>
+            </div>
+            <div class="ia-failure">
+              <div class="ia-failure-num">03</div>
+              <div><h4>Wrong Categorisation</h4><p>Liked content is architecturally separated from Saved content despite users mentally grouping them as the same thing.</p></div>
+            </div>
+            <div class="ia-failure">
+              <div class="ia-failure-num">04</div>
+              <div><h4>No Progressive Disclosure</h4><p>All content types are presented simultaneously with equal visual weight, giving users no hierarchy to guide their decisions.</p></div>
+            </div>
+            <div class="ia-failure">
+              <div class="ia-failure-num">05</div>
+              <div><h4>Broken Labeling System</h4><p>"Reactions" does not communicate what the section contains. Plain language like "Posts You Liked" would match the user's mental model immediately.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Solution -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">The Solution — My Content Hub</h2>
+          <p>Based on research findings, the solution works with existing user mental models rather than creating new ones. Liked and saved content is unified under one clearly labelled section called <strong>My Content</strong>, accessible within 2 taps from home.</p>
+          <div class="solution-code">
+            <div><span class="label">CURRENT BROKEN STRUCTURE:</span></div>
+            <div class="dim">Bottom Nav → Profile → View All →</div>
+            <div class="dim">All Activity V1 (wrong page) →</div>
+            <div class="dim">Navigate again → All Activity V2 →</div>
+            <div class="dim">Reactions (buried last) <span class="label">= 6 steps</span></div>
+            <br>
+            <div><span class="label">PROPOSED FIXED STRUCTURE:</span></div>
+            <div>Bottom Nav → <span class="highlight">My Content</span> → Posts I Liked <span class="label">= 2 taps</span></div>
+            <br>
+            <div><span class="highlight">MY CONTENT</span> <span class="dim">(new unified section)</span></div>
+            <div class="dim">├── Posts</div>
+            <div class="dim">├── Comments</div>
+            <div class="dim">├── <span style="color:#79c0ff;">Liked</span> <span style="color:#6e7681;">(renamed from Reactions)</span></div>
+            <div class="dim">└── Saved</div>
+          </div>
+          <ul style="list-style:none;padding:0;margin:1rem 0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li style="padding:0.75rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);font-size:0.88rem;color:var(--text-secondary);">
+              <strong style="color:var(--accent);">Entry Point 1 —</strong> Tap profile picture → Sidebar opens → Tap My Content = <strong style="color:var(--text-primary);">2 taps</strong>
+            </li>
+            <li style="padding:0.75rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);font-size:0.88rem;color:var(--text-secondary);">
+              <strong style="color:var(--accent);">Entry Point 2 —</strong> Tap profile picture → Tap profile area → Tap View All → My Content Hub = <strong style="color:var(--text-primary);">3 taps</strong>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Wireframes -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Wireframe Solution</h2>
+          <p>Mid-fidelity wireframes built in Figma. Each screen communicates structure, hierarchy, and interaction logic across all key screen states.</p>
+          <div class="wireframe-grid">
+            <div>
+              <div class="wireframe-img">
+
+                <img src="images/cs1-wf-homefeed.png" alt="Home Feed wireframe">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.2;width:28px;"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+                <span>images/cs1-wf-homefeed.png</span>
+              </div>
+              <div class="wireframe-label">Screen A: Home Feed</div>
+              <div class="wireframe-annotation">Profile picture tap is Entry Point 1. Borrowed from Instagram and Facebook mental models. Reduces discovery to 2 taps.</div>
+            </div>
+            <div>
+              <div class="wireframe-img">
+                <img src="images/cs1-wf-sidebar.png" alt="Sidebar wireframe"> 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.2;width:28px;"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+                <span>images/cs1-wf-sidebar.png</span>
+              </div>
+              <div class="wireframe-label">Screen B: Sidebar</div>
+              <div class="wireframe-annotation">My Content replaces separate Saved posts and Liked posts. This unified entry point eliminates the current split architecture.</div>
+            </div>
+            <div>
+              <div class="wireframe-img">
+                <img src="images/cs1-wf-hub.png" alt="My Content Hub wireframe"> 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.2;width:28px;"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+                <span>images/cs1-wf-hub.png</span>
+              </div>
+              <div class="wireframe-label">Screen 1: My Content Hub</div>
+              <div class="wireframe-annotation">Liked tab selected by default. Tab structure reduces from 6 to 4, removing redundant categories.</div>
+            </div>
+            <div>
+              <div class="wireframe-img">
+                <img src="images/cs1-wf-empty.png" alt="Empty State wireframe"> 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.2;width:28px;"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+                <span>images/cs1-wf-empty.png</span>
+              </div>
+              <div class="wireframe-label">Empty State</div>
+              <div class="wireframe-annotation">Recovery path via Browse Feed CTA so the user is never stranded. Empty state communicates function before content exists.</div>
+            </div>
+            <div>
+              <div class="wireframe-img">
+                <img src="images/cs1-wf-error.png" alt="Error State wireframe"> 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.2;width:28px;"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+                <span>images/cs1-wf-error.png</span>
+              </div>
+              <div class="wireframe-label">Error State</div>
+              <div class="wireframe-annotation">Connection failure state. Try Again CTA provides a recovery path so the user is never left without a next action.</div>
+            </div>
+          </div>
+
+          <!-- User Flow -->
+          <div style="margin-top:1.5rem; border-radius:var(--radius); overflow:hidden; background:var(--bg-card); border:1px solid var(--border); padding:1rem;">
+            <img src="images/cs1-userflow.png" alt="User flow diagram" style="width:100%;height:auto;display:block;object-fit:contain;">
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.75rem;">User flow mapping both the happy path and alternate paths including error recovery and empty state handling.</p>
+        </section>
+
+        <!-- Usability Test Plan -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Usability Test Plan</h2>
+          <p>A structured test plan was developed to validate whether the redesign successfully solves the core problem:</p>
+          <div class="test-plan">
+            <div class="test-plan-row">
+              <div class="test-plan-key">Objective</div>
+              <div class="test-plan-val">To determine whether users can successfully locate their previously liked content using either of the two entry points, without guidance, confusion, or navigation errors.</div>
+            </div>
+            <div class="test-plan-row">
+              <div class="test-plan-key">Participants</div>
+              <div class="test-plan-val">5 participants matching Thabo's profile. These are young professionals breaking into their chosen industry, new or early-stage LinkedIn users who rely on mental models from other social platforms.</div>
+            </div>
+            <div class="test-plan-row">
+              <div class="test-plan-key">Task</div>
+              <div class="test-plan-val" style="font-style:italic;color:var(--accent);">"You liked a post last week about career advice. Please find it."</div>
+            </div>
+            <div class="test-plan-row">
+              <div class="test-plan-key">Metrics</div>
+              <div class="test-plan-val">
+                <ul>
+                  <li>Task completion rate: did the user finish or abandon?</li>
+                  <li>Time on task: how long from start to completion?</li>
+                  <li>Error rate: number of wrong taps or incorrect paths before completion</li>
+                </ul>
+              </div>
+            </div>
+            <div class="test-plan-row">
+              <div class="test-plan-key">Success Criteria</div>
+              <div class="test-plan-val">User completes the task in under 60 seconds via either entry point with zero navigation errors. Entry Point 2 is the primary test path as it represents the more complex of the two flows.</div>
+            </div>
+          </div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;">Note: This test plan is structured and ready for execution. User testing sessions will be conducted as participant opportunities become available.</p>
+        </section>
+
+        <!-- Strategic Impact -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Strategic Business Impact</h2>
+          <p>This redesign was evaluated across three levels of impact — not just as a navigation fix but as a real business decision:</p>
+          <div class="levels-grid">
+            <div class="level-card">
+              <div class="level-tag">Level 1: User</div>
+              <h4>Reduced friction</h4>
+              <p>Liked content retrievable in 2 taps instead of 6 steps. Matches the mental model users already carry from every other platform they use daily.</p>
+            </div>
+            <div class="level-card">
+              <div class="level-tag">Level 2: Product</div>
+              <h4>Improved retention</h4>
+              <p>Reduced churn rate. Re-engagement increases because users who previously abandoned the liked content journey now complete it. This is a measurable product metric LinkedIn would track.</p>
+            </div>
+            <div class="level-card">
+              <div class="level-tag">Level 3: Business</div>
+              <h4>Premium conversion</h4>
+              <p>Users who experience the platform as built for them are more likely to convert to LinkedIn Premium as their careers advance, which directly protects LinkedIn's core subscription revenue stream.</p>
+            </div>
+          </div>
+          <div class="strategic-block">
+            <p>"LinkedIn's liked content retrieval requires 6 steps, which violates the 2-tap mental model established across every major social platform and and drives silent abandonment among emerging professionals. I redesigned the content architecture by introducing a unified My Content hub accessible via 2 entry points, reducing retrieval to a maximum of 3 taps. This directly reduces churn among LinkedIn's fastest-growing user segment and increases the likelihood of Premium conversion as emerging professionals advance in their careers."</p>
+          </div>
+        </section>
+
+        <!-- Learnings -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">What I Learned</h2>
+          <div class="learnings-grid">
+            <div class="learning-card">
+              <div class="num">01</div>
+              <h4>IA failures are silent</h4>
+              <p>LinkedIn's problem is not a visual design failure, it is an architecture failure. Users don't complain. They silently abandon. Qualitative research is the only way to surface this.</p>
+            </div>
+            <div class="learning-card">
+              <div class="num">02</div>
+              <h4>Convention serves users</h4>
+              <p>The temptation to be original can work against users. The 2-tap pattern exists across every major platform because it works. Following that convention is not laziness. It is respect for the user's mental model.</p>
+            </div>
+            <div class="learning-card">
+              <div class="num">03</div>
+              <h4>Design is a business argument</h4>
+              <p>Every UX decision connects to a product metric and every product metric connects to revenue. Being able to articulate that chain from wireframe decision to business outcome is what separates a designer from a decorator.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Download -->
+        <section class="case-section reveal" style="text-align:center;padding:2rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div class="section-label" style="margin-bottom:0.75rem;">Full Documentation</div>
+          <h3 style="font-family:var(--font-display);font-weight:300;font-size:1.5rem;margin-bottom:0.75rem;">Read the complete case study</h3>
+          <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.5rem;">33-page PDF documenting all 6 stages — from empathy research to strategic business case.</p>
+          <!-- UPDATE href to match your actual PDF filename -->
+          <a href="LinkedIn_UX_Case_Study_Chris_Lufuilu.pdf" class="btn btn-primary" target="_blank">
+            Download Case Study PDF
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 4 3-4M3 13h10" /></svg>
+          </a>
+        </section>
+
+        <!-- Next project nav -->
+        <div style="display:flex;justify-content:space-between;padding:3rem 0;border-top:1px solid var(--border);flex-wrap:wrap;gap:1rem;">
+          <span style="font-size:0.72rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;">Next Project</span>
+          <a href="case-study-2.html" class="btn btn-outline">
+            Case Study 002
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <p class="footer-copy">© 2026 <span>Chris Lufuilu</span>. All rights reserved.</p>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/chris-l-036564230/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.behance.net/chrislufuilu" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="mailto:Chrislufuilu723@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 13V3M3 8l5-5 5 5" /></svg>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
