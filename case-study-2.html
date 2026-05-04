@@ -8,17 +8,6 @@
       content="Case study: Fika — a child-only student transport app designed for Cape Town parents and drivers." />
     <link rel="stylesheet" href="style.css" />
     <style>
-      /* ── Reveal fallback: ensure nothing stays permanently hidden ── */
-      .reveal {
-        opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-      /* Force-show all reveals after 1.5s in case observer misses them */
       @keyframes forceShow {
         to { opacity: 1; transform: none; }
       }
@@ -29,7 +18,6 @@
         animation: none;
       }
 
-      /* ── CS2 Custom Styles ── */
       .cs-stat-row {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -58,7 +46,6 @@
         color: var(--text-secondary);
       }
 
-      /* In Progress Banner */
       .in-progress-banner {
         background: var(--bg-card);
         border: 1px solid var(--accent);
@@ -81,25 +68,16 @@
         0%, 100% { opacity: 1; transform: scale(1); }
         50% { opacity: 0.5; transform: scale(1.3); }
       }
-      .in-progress-text {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-      }
-      .in-progress-text strong {
-        color: var(--accent);
-        font-weight: 500;
-      }
+      .in-progress-text { font-size: 0.85rem; color: var(--text-secondary); }
+      .in-progress-text strong { color: var(--accent); font-weight: 500; }
 
-      /* Stage progress tracker */
       .stage-tracker {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.75rem;
-        margin: 2rem 0;
+        margin: 1.5rem 0;
       }
-      @media (max-width: 600px) {
-        .stage-tracker { grid-template-columns: 1fr 1fr; }
-      }
+      @media (max-width: 600px) { .stage-tracker { grid-template-columns: 1fr 1fr; } }
       .stage-pill {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -109,35 +87,16 @@
         letter-spacing: 0.05em;
         text-align: center;
         color: var(--text-secondary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
       }
-      .stage-pill.complete {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-      .stage-pill.complete::before {
-        content: '✓';
-        font-size: 0.7rem;
-      }
-      .stage-pill.pending::before {
-        content: '○';
-        font-size: 0.7rem;
-        opacity: 0.4;
-      }
+      .stage-pill.complete { border-color: var(--accent); color: var(--accent); }
 
-      /* Dual user callout */
       .dual-user-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
-        margin: 2rem 0;
+        margin: 1.5rem 0;
       }
-      @media (max-width: 600px) {
-        .dual-user-grid { grid-template-columns: 1fr; }
-      }
+      @media (max-width: 600px) { .dual-user-grid { grid-template-columns: 1fr; } }
       .user-card {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -158,168 +117,32 @@
         color: var(--text-primary);
         margin-bottom: 0.75rem;
       }
-      .user-card p {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0;
-      }
+      .user-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
-      /* Empathy map */
-      .empathy-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
-      @media (max-width: 600px) {
-        .empathy-grid { grid-template-columns: 1fr; }
-      }
-      .empathy-cell {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
+      .cross-insight {
+        background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201,168,76,0.05) 100%);
+        border: 1px solid var(--accent);
         border-radius: var(--radius);
-        padding: 1.4rem;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        text-align: center;
       }
-      .empathy-cell-label {
-        font-size: 0.68rem;
+      .cross-insight-label {
+        font-size: 0.72rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 0.75rem;
-        font-weight: 500;
+        margin-bottom: 1rem;
       }
-      .empathy-cell ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .empathy-cell ul li {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        padding: 0.3rem 0;
-        border-bottom: 1px solid var(--border);
-        line-height: 1.5;
-      }
-      .empathy-cell ul li:last-child {
-        border-bottom: none;
-      }
-
-      /* Bias cards */
-      .bias-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
-      @media (max-width: 600px) {
-        .bias-grid { grid-template-columns: 1fr; }
-      }
-      .bias-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.4rem;
-      }
-      .bias-num {
-        font-family: var(--font-display);
-        font-size: 2rem;
-        font-weight: 300;
-        color: var(--accent);
-        opacity: 0.3;
-        line-height: 1;
-        margin-bottom: 0.5rem;
-      }
-      .bias-card h4 {
-        font-size: 0.95rem;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-      }
-      .bias-card p {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0 0 0.75rem 0;
-      }
-      .bias-implication {
-        font-size: 0.8rem;
-        color: var(--accent);
-        font-style: italic;
-        padding-top: 0.75rem;
-        border-top: 1px solid var(--border);
-      }
-
-      /* UX Loop */
-      .loop-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
-      @media (max-width: 600px) {
-        .loop-grid { grid-template-columns: 1fr; }
-      }
-      .loop-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.4rem;
-      }
-      .loop-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.6rem;
-      }
-      .loop-card p {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0;
-      }
-
-      /* Findings list */
-      .findings-list {
-        list-style: none;
-        padding: 0;
-        margin: 1.5rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      .finding-item {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.2rem 1.5rem;
-        display: flex;
-        gap: 1rem;
-        align-items: flex-start;
-      }
-      .finding-num {
+      .cross-insight p {
         font-family: var(--font-display);
         font-size: 1.1rem;
         font-weight: 300;
-        color: var(--accent);
-        flex-shrink: 0;
-        min-width: 28px;
-        opacity: 0.7;
-      }
-      .finding-text {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-      }
-      .finding-text strong {
-        display: block;
         color: var(--text-primary);
-        margin-bottom: 0.2rem;
-        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
       }
 
-      /* Quote block */
       .research-quote {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -337,120 +160,9 @@
         margin: 0 0 0.75rem 0;
         line-height: 1.6;
       }
-      .research-quote cite {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-        font-style: normal;
-        letter-spacing: 0.05em;
-      }
+      .research-quote cite { font-size: 0.8rem; color: var(--text-secondary); font-style: normal; }
 
-      /* Participant profile */
-      .participant-profile {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.4rem 1.8rem;
-        margin-bottom: 1.5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1rem;
-      }
-      .profile-item-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        margin-bottom: 0.2rem;
-      }
-      .profile-item-value {
-        font-size: 0.9rem;
-        color: var(--text-primary);
-      }
-
-      /* Cross insight callout */
-      .cross-insight {
-        background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201,168,76,0.05) 100%);
-        border: 1px solid var(--accent);
-        border-radius: var(--radius);
-        padding: 2rem;
-        margin: 2rem 0;
-        text-align: center;
-      }
-      .cross-insight-label {
-        font-size: 0.72rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 1rem;
-      }
-      .cross-insight p {
-        font-family: var(--font-display);
-        font-size: 1.15rem;
-        font-weight: 300;
-        color: var(--text-primary);
-        line-height: 1.6;
-        margin: 0;
-      }
-
-      /* Cluster cards */
-      .cluster-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
-      .cluster-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.5rem;
-      }
-      .cluster-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 0.75rem;
-      }
-      .cluster-num {
-        font-family: var(--font-display);
-        font-size: 1.8rem;
-        font-weight: 300;
-        color: var(--accent);
-        opacity: 0.4;
-        line-height: 1;
-      }
-      .cluster-title {
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--text-primary);
-      }
-      .cluster-refs {
-        font-size: 0.75rem;
-        color: var(--accent);
-        margin-bottom: 0.5rem;
-        opacity: 0.8;
-      }
-      .cluster-card p {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0 0 0.75rem 0;
-      }
-      .cluster-pattern {
-        font-size: 0.83rem;
-        color: var(--text-primary);
-        font-style: italic;
-        padding-top: 0.75rem;
-        border-top: 1px solid var(--border);
-      }
-
-      /* Insights */
-      .insights-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
+      .insights-list { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
       .insight-item {
         display: flex;
         gap: 1.2rem;
@@ -470,53 +182,9 @@
         flex-shrink: 0;
         min-width: 40px;
       }
-      .insight-content h4 {
-        font-size: 0.95rem;
-        color: var(--text-primary);
-        font-weight: 500;
-        margin-bottom: 0.4rem;
-      }
-      .insight-content p {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0;
-      }
+      .insight-content h4 { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; margin-bottom: 0.4rem; }
+      .insight-content p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
-      /* HMW */
-      .hmw-block {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-      }
-      .hmw-insight-label {
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 1rem;
-      }
-      .hmw-level {
-        margin-bottom: 0.75rem;
-      }
-      .hmw-level-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        margin-bottom: 0.3rem;
-      }
-      .hmw-level p {
-        font-size: 0.88rem;
-        color: var(--text-primary);
-        line-height: 1.5;
-        margin: 0;
-        font-style: italic;
-      }
-
-      /* Persona card */
       .persona-card {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -529,24 +197,10 @@
         padding: 1.8rem;
         border-bottom: 1px solid var(--border);
       }
-      .persona-role-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.5rem;
-      }
-      .persona-name {
-        font-family: var(--font-display);
-        font-size: 1.8rem;
-        font-weight: 300;
-        color: var(--text-primary);
-        margin-bottom: 0.3rem;
-      }
-      .persona-subtitle {
-        font-size: 0.82rem;
-        color: var(--text-secondary);
-      }
+      .persona-header.driver { background: linear-gradient(135deg, #0a0a14 0%, #101020 100%); }
+      .persona-role-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+      .persona-name { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; color: var(--text-primary); margin-bottom: 0.3rem; }
+      .persona-subtitle { font-size: 0.82rem; color: var(--text-secondary); }
       .persona-quote {
         padding: 1.5rem 1.8rem;
         border-bottom: 1px solid var(--border);
@@ -562,91 +216,35 @@
         grid-template-columns: repeat(4, 1fr);
         border-bottom: 1px solid var(--border);
       }
-      @media (max-width: 500px) {
-        .persona-stats { grid-template-columns: repeat(2, 1fr); }
-      }
-      .persona-stat {
-        padding: 1.2rem;
-        text-align: center;
-        border-right: 1px solid var(--border);
-      }
+      @media (max-width: 500px) { .persona-stats { grid-template-columns: repeat(2, 1fr); } }
+      .persona-stat { padding: 1.2rem; text-align: center; border-right: 1px solid var(--border); }
       .persona-stat:last-child { border-right: none; }
-      .persona-stat-value {
-        font-family: var(--font-display);
-        font-size: 1.4rem;
-        font-weight: 300;
-        color: var(--accent);
-        line-height: 1;
-        margin-bottom: 0.3rem;
-      }
-      .persona-stat-label {
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-      }
-      .persona-body {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid var(--border);
-      }
-      .persona-body .persona-section {
-        flex: 1 1 200px;
-      }
-      .persona-section {
-        padding: 1.4rem 1.6rem;
-        border-right: 1px solid var(--border);
-      }
+      .persona-stat-value { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+      .persona-stat-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+      .persona-body { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+      .persona-section { flex: 1 1 200px; padding: 1.4rem 1.6rem; border-right: 1px solid var(--border); }
       .persona-section:last-child { border-right: none; }
-      .persona-section-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.75rem;
-      }
-      .persona-section ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .persona-section ul li {
-        font-size: 0.83rem;
-        color: var(--text-secondary);
-        padding: 0.3rem 0;
-        border-bottom: 1px solid var(--border);
-        line-height: 1.5;
-      }
+      .persona-section-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+      .persona-section ul { list-style: none; padding: 0; margin: 0; }
+      .persona-section ul li { font-size: 0.83rem; color: var(--text-secondary); padding: 0.3rem 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
       .persona-section ul li:last-child { border-bottom: none; }
-      .persona-footer {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid var(--border);
+      .persona-footer { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+      .persona-moment, .persona-insight { flex: 1 1 260px; padding: 1.4rem 1.6rem; }
+      .persona-moment { border-right: 1px solid var(--border); }
+      .persona-moment p, .persona-insight p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+      .persona-tags { padding: 1.2rem 1.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+      .pdf-block {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        text-align: center;
+        margin-top: 1.5rem;
       }
-      .persona-moment,
-      .persona-insight {
-        flex: 1 1 260px;
-      }
-      .persona-moment {
-        padding: 1.4rem 1.6rem;
-        border-right: 1px solid var(--border);
-      }
-      .persona-insight {
-        padding: 1.4rem 1.6rem;
-      }
-      .persona-moment p,
-      .persona-insight p {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin: 0;
-      }
-      .persona-tags {
-        padding: 1.2rem 1.6rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
+      .pdf-block-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+      .pdf-block h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--text-primary); margin-bottom: 0.75rem; }
+      .pdf-block p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
     </style>
   </head>
   <body>
@@ -655,7 +253,6 @@
     <div class="cursor-ring"></div>
     <div class="page-transition"></div>
 
-    <!-- ── Navigation ── -->
     <nav>
       <div class="container">
         <div class="nav-inner">
@@ -663,27 +260,13 @@
           <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="work.html" class="active">Work</a></li>
+            <li><a href="work.html">Work</a></li>
             <li><a href="process.html">Process</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
           <button class="theme-toggle" aria-label="Toggle theme">
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18"
-              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round"><path
-                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18"
-              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round"><circle cx="12" cy="12" r="5" /><line
-                x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12"
-                y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line
-                x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1"
-                y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23"
-                y2="12" /><line x1="4.22" y1="19.78" x2="5.64"
-                y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78"
-                y2="4.22" /></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
           </button>
           <button class="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
@@ -700,12 +283,10 @@
       <a href="contact.html">Contact</a>
     </div>
 
-    <!-- ── Case Study Hero ── -->
     <header class="case-hero">
       <div class="container">
         <a href="work.html" class="case-back">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            stroke-width="1.5">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M13 8H3M7 4L3 8l4 4" />
           </svg>
           Back to Work
@@ -735,11 +316,9 @@
           </div>
         </div>
 
-        <!-- Hero placeholder -->
         <div class="img-placeholder reveal"
           style="aspect-ratio: 21/9; border-radius: var(--radius-lg); background: linear-gradient(135deg, #0e1a0e 0%, #162016 100%);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1"
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
             style="opacity:0.3; color: var(--accent); width: 64px; height: 64px;">
             <rect x="7" y="2" width="10" height="20" rx="2" />
             <circle cx="12" cy="18" r="1" />
@@ -750,51 +329,26 @@
       </div>
     </header>
 
-    <!-- ── Case Study Content ── -->
     <main>
       <div class="container" style="max-width: 900px;">
 
-        <!-- In Progress Banner -->
+        <!-- Banner -->
         <div class="in-progress-banner reveal">
           <div class="in-progress-dot"></div>
           <div class="in-progress-text">
-            <strong>Case study in progress.</strong> Stages 1 and 2 are complete and documented below. Wireframes and high-fidelity screens will be added as each stage is completed.
+            <strong>Case study in progress.</strong> Stages 1 and 2 are complete. Wireframes and screens will be added as each stage completes.
           </div>
         </div>
 
         <!-- Stage Tracker -->
-        <section class="case-section reveal">
-          <h2 class="case-section-title">Progress</h2>
-          <div class="stage-tracker">
-            <div class="stage-pill complete">Stage 1 — Empathy</div>
-            <div class="stage-pill complete">Stage 2 — Research</div>
-            <div class="stage-pill pending">Stage 3 — IA</div>
-            <div class="stage-pill pending">Stage 4 — Wireframes</div>
-            <div class="stage-pill pending">Stage 5 — Testing</div>
-            <div class="stage-pill pending">Stage 6 — Strategy</div>
-          </div>
-        </section>
-
-        <!-- Overview -->
-        <section class="case-section reveal">
-          <h2 class="case-section-title">Project Overview</h2>
-          <p>
-            Fika is an original product concept — a child-only student transport service for Cape Town parents of primary and high school learners. The name comes from Swahili, meaning <em>to arrive</em>. Swahili is my home language. The name was chosen deliberately. The entire product exists to answer one question a parent asks every school morning: did my child arrive?
-          </p>
-          <p>
-            The service operates a vetted fleet of company-owned vehicles running fixed routes across Cape Town. Parents register, add their children, select their school area, and get assigned to a driver. All drivers are employed by the company, background-checked, and driving-assessed before their first route.
-          </p>
-          <p>
-            This is a dual-interface product — one app for parents, one for drivers. Both serve the same core purpose from opposite sides: getting children to school and home safely, with full visibility and accountability at every step.
-          </p>
-          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem;">
-            <span class="tag">UX Research</span>
-            <span class="tag">Original Concept</span>
-            <span class="tag">Dual Interface</span>
-            <span class="tag">Safety App</span>
-            <span class="tag">South African Context</span>
-          </div>
-        </section>
+        <div class="stage-tracker reveal">
+          <div class="stage-pill complete">✓ Stage 1 — Empathy</div>
+          <div class="stage-pill complete">✓ Stage 2 — Research</div>
+          <div class="stage-pill">○ Stage 3 — IA</div>
+          <div class="stage-pill">○ Stage 4 — Wireframes</div>
+          <div class="stage-pill">○ Stage 5 — Testing</div>
+          <div class="stage-pill">○ Stage 6 — Strategy</div>
+        </div>
 
         <!-- Stats -->
         <div class="cs-stat-row reveal">
@@ -816,10 +370,34 @@
           </div>
         </div>
 
-        <!-- Dual Users -->
+        <!-- 1. Overview -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Project Overview</h2>
+          <p>Fika is an original product concept — a child-only student transport service built for Cape Town parents of primary and high school learners. The name comes from Swahili, meaning <em>to arrive</em>. Swahili is my home language. The name was chosen deliberately. The entire product exists to answer one question a parent asks every school morning: did my child arrive?</p>
+          <p>The service operates a vetted fleet of company-owned vehicles on fixed routes across Cape Town. All drivers are employed, background-checked, and driving-assessed. Parents register, select their school area, and get assigned to a driver. Monthly subscription. No guesswork. No word of mouth.</p>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <span class="tag">UX Research</span>
+            <span class="tag">Original Concept</span>
+            <span class="tag">Dual Interface</span>
+            <span class="tag">Safety App</span>
+            <span class="tag">South African Context</span>
+          </div>
+        </section>
+
+        <!-- 2. Problem -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">The Problem</h2>
+          <div class="research-quote">
+            <p>Cape Town parents of primary and high school learners struggle to trust their children's safety travelling to and from school — because there is no affordable, child-only, trustworthy transport solution that gives them real visibility into whether their child arrived safely.</p>
+          </div>
+          <p>Parents currently solve this through word of mouth — a neighbour recommends a driver, a friend vouches for someone. That system has no formal accountability and breaks the moment the informal driver decides to stop.</p>
+          <p>When a parent puts their child in a car for the first time and it drives away, they do not feel relief. They feel controlled anxiety. Fika's real design challenge is: <strong>how do you convert first-time anxiety into earned trust, one trip at a time?</strong></p>
+        </section>
+
+        <!-- 3. Two Users -->
         <section class="case-section reveal">
           <h2 class="case-section-title">Two Users. One Problem.</h2>
-          <p>Most apps serve one user. Fika serves two — with different needs, different fears, and different definitions of safety. Both are served by the same data.</p>
+          <p>Fika is a dual-interface product. Different needs, different fears, different definitions of safety — all served by the same data.</p>
           <div class="dual-user-grid">
             <div class="user-card">
               <div class="user-card-label">User 1 — Parent</div>
@@ -833,510 +411,64 @@
             </div>
           </div>
           <div class="cross-insight">
-            <div class="cross-insight-label">Core Product Insight</div>
-            <p>The parent has no visibility. The driver has no proof. The same feature — a timestamped confirmation — solves both problems simultaneously.</p>
+            <div class="cross-insight-label">Core Product Insight — Confirmed by Independent Research</div>
+            <p>The parent has no visibility. The driver has no proof. The same timestamped confirmation solves both problems simultaneously. One feature. Two users. Multiple problems resolved.</p>
           </div>
         </section>
 
-        <!-- ═══════════════════════════════════════ -->
-        <!-- STAGE 1 -->
-        <!-- ═══════════════════════════════════════ -->
+        <!-- 4. Insights -->
         <section class="case-section reveal">
-          <div class="section-label">Stage 1</div>
-          <h2 class="case-section-title">Empathy and Psychology</h2>
-
-          <!-- Emotional Insight -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2rem 0 1rem;">The Core Emotional Insight</h3>
-          <p>Before research, wireframes, or features — the emotional foundation of Fika was identified through empathy work.</p>
-          <div class="research-quote">
-            <p>When a parent puts their child in the Fika car for the very first time and the car drives away, they do not feel relief. They do not feel trust. What they feel is controlled anxiety. The car is gone and their child is in it.</p>
-          </div>
-          <p>This means Fika's design challenge is not registration or payment. The real challenge is: <strong>how does Fika convert first-time anxiety into earned trust, one trip at a time?</strong></p>
-
-          <!-- Parent Empathy Map -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Empathy Map — Parent</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">A working Cape Town parent. One or more primary or high school children. Currently relying on walking, public transport, or lifts.</p>
-          <div class="empathy-grid">
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Says</div>
-              <ul>
-                <li>"I can't always be there to fetch them"</li>
-                <li>"The taxi is cheap but I don't feel safe sending them alone"</li>
-                <li>"I just need to know they got there"</li>
-                <li>"If anything happened I would never forgive myself"</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Thinks</div>
-              <ul>
-                <li>What if the driver is not who he says he is</li>
-                <li>What if my child doesn't get on the car</li>
-                <li>Is this worth the monthly cost</li>
-                <li>What if the app goes down</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Does</div>
-              <ul>
-                <li>Calls child repeatedly until they confirm arrival</li>
-                <li>Asks neighbours to watch out on the route</li>
-                <li>Takes time off work when situation feels unsafe</li>
-                <li>Relies on word of mouth to find trusted drivers</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Feels</div>
-              <ul>
-                <li>Chronic low-level anxiety every school morning</li>
-                <li>Guilt when they cannot be present</li>
-                <li>Helplessness when there is no visibility</li>
-                <li>Temporary relief only when child confirms arrival</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Driver Empathy Map -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Empathy Map — Driver</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">A vetted Fika driver. Cape Town based. Responsible for 4 to 8 children per route across multiple schools.</p>
-          <div class="empathy-grid">
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Says</div>
-              <ul>
-                <li>"I dropped the child off, I can't control what happens after"</li>
-                <li>"The parent never told me she wasn't coming today"</li>
-                <li>"I have other children waiting, I can't sit here"</li>
-                <li>"I've done this job properly and now they're blaming me"</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Thinks</div>
-              <ul>
-                <li>What if a parent accuses me of something I didn't do</li>
-                <li>I need proof that I did my job correctly</li>
-                <li>Why do parents only communicate when there's a problem</li>
-                <li>If I lose this job I lose my income</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Does</div>
-              <ul>
-                <li>Calls parents when a child doesn't come out</li>
-                <li>Waits longer than he should hoping child appears</li>
-                <li>Takes personal screenshots to protect himself</li>
-                <li>Drives the route from memory after months on the job</li>
-              </ul>
-            </div>
-            <div class="empathy-cell">
-              <div class="empathy-cell-label">Feels</div>
-              <ul>
-                <li>Unprotected when accusations come without evidence</li>
-                <li>Frustrated by poor communication from parents</li>
-                <li>Anxious about being blamed for things outside his control</li>
-                <li>Proud when the route runs smoothly</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Cognitive Biases -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Cognitive Biases in Play</h3>
-          <div class="bias-grid">
-            <div class="bias-card">
-              <div class="bias-num">01</div>
-              <h4>Familiarity Bias</h4>
-              <p>Parents know Uber and Bolt. They arrive at Fika expecting the same mental model — map, moving dot, ETA. Deviating from that pattern without reason destroys trust immediately.</p>
-              <div class="bias-implication">The tracking screen must feel instantly familiar — not copied, but recognisable.</div>
-            </div>
-            <div class="bias-card">
-              <div class="bias-num">02</div>
-              <h4>Paradox of Choice</h4>
-              <p>A parent registering is already anxious. Too many questions at once — children, schools, areas, payment — and they abandon before completing.</p>
-              <div class="bias-implication">Onboarding must be broken into small committed steps. One decision at a time.</div>
-            </div>
-            <div class="bias-card">
-              <div class="bias-num">03</div>
-              <h4>Anchoring Bias</h4>
-              <p>If price appears before trust is established, it feels expensive. After seeing vetting, tracking, and accountability — the same number feels fair.</p>
-              <div class="bias-implication">Price is revealed late in onboarding, after value is demonstrated.</div>
-            </div>
-            <div class="bias-card">
-              <div class="bias-num">04</div>
-              <h4>Loss Aversion</h4>
-              <p>Parents are not paying for convenience. They are paying to avoid loss — specifically the loss of their child's safety.</p>
-              <div class="bias-implication">Fika's messaging focuses on what parents no longer have to worry about.</div>
-            </div>
-            <div class="bias-card">
-              <div class="bias-num">05</div>
-              <h4>Von Restorff Effect</h4>
-              <p>On the driver's manifest, if all children look identical nothing stands out. A child with a medical note or gate code must be visually distinct.</p>
-              <div class="bias-implication">Critical child information must be visually distinct on the driver's screen.</div>
-            </div>
-            <div class="bias-card">
-              <div class="bias-num">06</div>
-              <h4>Peak End Rule</h4>
-              <p>Parents judge the whole experience on two moments — when the car drives away the first time, and when the arrived notification lands.</p>
-              <div class="bias-implication">The arrived notification is not a system message. It is the moment a parent exhales.</div>
-            </div>
-          </div>
-
-          <!-- Problem Statement -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Problem Statement</h3>
-          <div class="research-quote">
-            <p>Cape Town parents of primary and high school learners struggle to trust their children's safety travelling to and from school — because there is no affordable, child-only, trustworthy transport solution that gives them real visibility into whether their child arrived safely.</p>
-          </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════ -->
-        <!-- STAGE 2 -->
-        <!-- ═══════════════════════════════════════ -->
-        <section class="case-section reveal">
-          <div class="section-label">Stage 2</div>
-          <h2 class="case-section-title">UX Research</h2>
-          <p>Fika is built around emotion, trust, and safety. Numbers cannot capture why a parent feels anxious or why a driver feels unprotected. Qualitative interviews were chosen to surface the human truth underneath the behaviour.</p>
-
-          <!-- Parent Interview -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2rem 0 1rem;">Parent Interview — Nomsa D.</h3>
-          <div class="participant-profile">
-            <div>
-              <div class="profile-item-label">Name</div>
-              <div class="profile-item-value">Nomsa D.</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Age</div>
-              <div class="profile-item-value">34</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Occupation</div>
-              <div class="profile-item-value">Admin clerk, Bellville</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Children</div>
-              <div class="profile-item-value">2 — Grade 4 and Grade 8</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Transport</div>
-              <div class="profile-item-value">Walking + minibus taxi</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Device</div>
-              <div class="profile-item-value">Android</div>
-            </div>
-          </div>
-          <p>Nomsa wakes at 5:30 every morning. She leaves for work at 7:00 — sometimes before her son Liam has left the house. She has explored informal alternatives through word of mouth but could not commit to a neighbour with no contract, no insurance, and no accountability.</p>
-          <div class="research-quote">
-            <p>"It would make me feel like a better mother. Like I did something right for my children even though I cannot be there with them."</p>
-            <cite>— Nomsa D., research participant</cite>
-          </div>
-
-          <h4 style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin: 1.5rem 0 1rem;">Parent Research Findings</h4>
-          <ul class="findings-list">
-            <li class="finding-item">
-              <span class="finding-num">01</span>
-              <div class="finding-text"><strong>Geographic word-of-mouth limitation</strong>Trusted driver recommendations only work within a neighbourhood. A good driver in Parow cannot help a parent in Bellville.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">02</span>
-              <div class="finding-text"><strong>Informal = untrustworthy</strong>A neighbour offering transport is not the same as a company offering transport. The difference is accountability.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">03</span>
-              <div class="finding-text"><strong>Price is non-negotiable</strong>Affordable does not mean cheap — it means fair for what you earn. Single income households need a price that makes sense.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">04</span>
-              <div class="finding-text"><strong>Parents want institutional accountability</strong>A name, a face, a number, something registered. Verbal agreements offer no protection if something goes wrong.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">05</span>
-              <div class="finding-text"><strong>Reliability is non-negotiable</strong>Every morning. Not maybe. The informal system breaks when a driver decides to stop — sometimes with no notice at all.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">06</span>
-              <div class="finding-text"><strong>Legal accountability matters</strong>A registered company signals seriousness. If something happens to a child, the parent needs someone they can hold responsible.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">07</span>
-              <div class="finding-text"><strong>One notification changes everything</strong>A single message saying the child arrived safely would be emotionally transformative for a working parent sitting at a desk with their phone off.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">08</span>
-              <div class="finding-text"><strong>Fika sells relief, not transport</strong>The core emotional value of the product is the feeling of being a good parent despite impossible circumstances.</div>
-            </li>
-          </ul>
-
-          <!-- Driver Interview -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Driver Interview — Sipho M.</h3>
-          <div class="participant-profile">
-            <div>
-              <div class="profile-item-label">Name</div>
-              <div class="profile-item-value">Sipho M.</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Age</div>
-              <div class="profile-item-value">29</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Occupation</div>
-              <div class="profile-item-value">Informal school driver</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Children</div>
-              <div class="profile-item-value">6 across 3 schools</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Vehicle</div>
-              <div class="profile-item-value">2018 Toyota Corolla</div>
-            </div>
-            <div>
-              <div class="profile-item-label">Experience</div>
-              <div class="profile-item-value">2 years</div>
-            </div>
-          </div>
-          <p>Sipho plans his route the night before — there is no time to think in the morning. His biggest daily stress is not the driving. It is uncertainty: children not ready, parents who knew last night that their child would not attend but said nothing.</p>
-          <p>He described an incident involving a child named Kavelo. Sipho dropped him at school and watched him walk through the gate. That afternoon the mother called — the school said he was never in class. She accused Sipho of not taking him. For three hours he had nothing to show her. No timestamp. No record. Kavelo had left through a hole in the fence during break. The mother apologised — but the three hours without proof stayed with Sipho long after.</p>
-          <div class="research-quote">
-            <p>"I just want to do it properly. With the right tools. So that everyone — the parents, the children, me — everyone feels safe and respected. That is all I want."</p>
-            <cite>— Sipho M., research participant</cite>
-          </div>
-
-          <h4 style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin: 1.5rem 0 1rem;">Driver Research Findings</h4>
-          <ul class="findings-list">
-            <li class="finding-item">
-              <span class="finding-num">01</span>
-              <div class="finding-text"><strong>Drivers absorb financial losses from silence</strong>Every unnecessary trip costs fuel from the driver's own pocket. No formal system requires parents to notify absences in advance.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">02</span>
-              <div class="finding-text"><strong>Favour vs professional service</strong>Parents treat informal transport as a favour. A company structure changes that dynamic completely.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">03</span>
-              <div class="finding-text"><strong>Children exploit accountability gaps</strong>When children know there is no tracking system they learn to exploit it. Confirmation systems close that loophole.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">04</span>
-              <div class="finding-text"><strong>Drivers want to be tracked</strong>Not because they are forced to — because it protects them. The same data that reassures a parent clears a driver of a false accusation.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">05</span>
-              <div class="finding-text"><strong>The interface must be fast and minimal</strong>Every extra decision the app requires during driving is a direct safety risk to the children in the car.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">06</span>
-              <div class="finding-text"><strong>Route data enables backup drivers</strong>If a driver is unavailable, a replacement can run the route without starting from zero. This emerged purely from research.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">07</span>
-              <div class="finding-text"><strong>The system is the witness</strong>Timestamped confirmations transform the app from a convenience tool into a legal protection layer.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">08</span>
-              <div class="finding-text"><strong>GPS should trigger confirmation automatically</strong>The app detects school location and surfaces only the children assigned there. The driver should never have to search.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">09</span>
-              <div class="finding-text"><strong>The app handles communication — the driver handles driving</strong>Automated notifications remove the communication burden entirely from the driver.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">10</span>
-              <div class="finding-text"><strong>Cognitive load must be near zero</strong>Three seconds maximum screen interaction per stop. More than that is a safety risk, not just a UX problem.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">11</span>
-              <div class="finding-text"><strong>Driver profile visibility builds trust before arrival</strong>Name, photo, and car registration visible to the parent before the car arrives. Transforms a stranger into a known person.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">12</span>
-              <div class="finding-text"><strong>Trip ratings build official reputation</strong>Good drivers deserve a formal record beyond word of mouth. Ratings protect quality drivers and surface problematic ones.</div>
-            </li>
-            <li class="finding-item">
-              <span class="finding-num">13</span>
-              <div class="finding-text"><strong>Incident reporting protects everyone</strong>A formal channel for documenting in-car safety issues. Currently drivers report verbally — with no record either way.</div>
-            </li>
-          </ul>
-
-          <!-- Cross Insight -->
-          <div class="cross-insight" style="margin-top: 2.5rem;">
-            <div class="cross-insight-label">Cross-Interview Insight</div>
-            <p>Both participants — without knowing each other existed — described the same gap from opposite sides. The parent has no visibility. The driver has no proof. The same timestamped confirmation solves both problems simultaneously. That is the core product insight of Fika confirmed by independent research.</p>
-          </div>
-
-          <!-- Synthesis -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Synthesis — Clusters</h3>
-          <div class="cluster-grid">
-            <div class="cluster-card">
-              <div class="cluster-header">
-                <div class="cluster-num">01</div>
-                <div class="cluster-title">Trust and Accountability</div>
-              </div>
-              <div class="cluster-refs">Parent Findings 2, 4, 6 · Driver Findings 2, 4, 7, 11</div>
-              <p>Parents do not trust individuals without formal structure. Drivers want to be tracked because it protects them. Legal accountability matters to both sides.</p>
-              <div class="cluster-pattern">Pattern: Trust is not assumed. It is built through structure, visibility, and formal accountability on both sides.</div>
-            </div>
-            <div class="cluster-card">
-              <div class="cluster-header">
-                <div class="cluster-num">02</div>
-                <div class="cluster-title">Communication Breakdown</div>
-              </div>
-              <div class="cluster-refs">Parent Findings 1, 5, 7 · Driver Findings 1, 9</div>
-              <p>Every pain point traces back to a communication gap. Word of mouth has geographic limits. Reliability breaks when communication is informal.</p>
-              <div class="cluster-pattern">Pattern: The app's primary job is to close the communication gap between parent and driver automatically.</div>
-            </div>
-            <div class="cluster-card">
-              <div class="cluster-header">
-                <div class="cluster-num">03</div>
-                <div class="cluster-title">Safety and Protection</div>
-              </div>
-              <div class="cluster-refs">Parent Findings 3, 6, 8 · Driver Findings 3, 7, 12, 13</div>
-              <p>Safety means something different to each user. For parents it is emotional. For drivers it is legal.</p>
-              <div class="cluster-pattern">Pattern: The app must serve both definitions of safety simultaneously with every interaction.</div>
-            </div>
-            <div class="cluster-card">
-              <div class="cluster-header">
-                <div class="cluster-num">04</div>
-                <div class="cluster-title">Operational Efficiency</div>
-              </div>
-              <div class="cluster-refs">Driver Findings 5, 6, 8, 9, 10</div>
-              <p>The driver interface is a safety-critical tool. Three seconds maximum interaction. GPS automation. Every second of unnecessary interaction is a risk.</p>
-              <div class="cluster-pattern">Pattern: Efficiency is not a convenience feature — it is a child protection feature.</div>
-            </div>
-            <div class="cluster-card">
-              <div class="cluster-header">
-                <div class="cluster-num">05</div>
-                <div class="cluster-title">Emotional Value</div>
-              </div>
-              <div class="cluster-refs">Parent Findings 7, 8 · Driver Findings 4, 11</div>
-              <p>Both users need to feel something from this app — not just use it. One notification transforms a parent's morning. Profile visibility humanises a driver before arrival.</p>
-              <div class="cluster-pattern">Pattern: The emotional experience is the product.</div>
-            </div>
-          </div>
-
-          <!-- Insights -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">Insights</h3>
+          <h2 class="case-section-title">Key Insights</h2>
+          <p>Five insights distilled from 21 research findings across two user interviews. These drive every design decision that follows.</p>
           <div class="insights-list">
             <div class="insight-item">
               <div class="insight-num">01</div>
               <div class="insight-content">
                 <h4>Trust is infrastructure</h4>
-                <p>Parents and drivers both arrive at Fika already suspicious of each other. The app cannot assume goodwill. It must build trust actively through visible structure, vetted profiles, and formal accountability before the first trip happens.</p>
+                <p>Parents and drivers both arrive at Fika already suspicious of each other. The app must build trust actively through visible structure, vetted profiles, and formal accountability before the first trip happens.</p>
               </div>
             </div>
             <div class="insight-item">
               <div class="insight-num">02</div>
               <div class="insight-content">
                 <h4>The app is the communication layer</h4>
-                <p>Every breakdown in the current informal system happens because communication depends on humans remembering. The app must remove human memory from the equation entirely.</p>
+                <p>Every breakdown in the informal system happens because communication depends on humans remembering. The app must remove human memory from the equation entirely — notifications and confirmations happen automatically.</p>
               </div>
             </div>
             <div class="insight-item">
               <div class="insight-num">03</div>
               <div class="insight-content">
                 <h4>Safety has two currencies</h4>
-                <p>For parents safety is emotional. For drivers safety is legal. Fika must pay both currencies with every interaction. A confirmation tap is not just a notification — it is a legal timestamp.</p>
+                <p>For parents safety is emotional. For drivers safety is legal. A confirmation tap is not just a notification — it is a legal timestamp. Every interaction must serve both definitions simultaneously.</p>
               </div>
             </div>
             <div class="insight-item">
               <div class="insight-num">04</div>
               <div class="insight-content">
                 <h4>The driver interface is a safety-critical tool</h4>
-                <p>A driver distracted by a complicated interface has children in the car. Three seconds maximum is not a design preference — it is a child protection requirement.</p>
+                <p>A driver distracted by a complicated screen has children in the car. Three seconds maximum interaction per stop is not a design preference — it is a child protection requirement.</p>
               </div>
             </div>
             <div class="insight-item">
               <div class="insight-num">05</div>
               <div class="insight-content">
                 <h4>Fika sells relief, not transport</h4>
-                <p>Nobody opens Fika because they love the idea of a school transport app. They open it because they are afraid. Every screen must be measured against whether it moves the parent from afraid to relieved.</p>
+                <p>Nobody opens Fika because they love a transport app. They open it because they are afraid. Every screen must move the parent from afraid to relieved. The arrived notification is the moment a parent exhales.</p>
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- HMW -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">How Might We Questions</h3>
-          <div class="hmw-block">
-            <div class="hmw-insight-label">From Insight 1 — Trust is infrastructure</div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Surface</div>
-              <p>How might we show a parent everything they need to trust their driver before the first pickup arrives?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Structural</div>
-              <p>How might we design an onboarding experience that builds institutional trust before a parent ever meets their driver in person?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Deep</div>
-              <p>How might we create a product that makes a parent feel safer trusting a vetted company than trusting a neighbour they have known for years?</p>
-            </div>
-          </div>
-          <div class="hmw-block">
-            <div class="hmw-insight-label">From Insight 2 — The app is the communication layer</div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Surface</div>
-              <p>How might we ensure a parent receives an arrival notification without the driver having to remember to send one?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Structural</div>
-              <p>How might we design an absence notification system that makes it easier for a parent to notify than to forget?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Deep</div>
-              <p>How might we remove human memory entirely from the communication chain between parent and driver?</p>
-            </div>
-          </div>
-          <div class="hmw-block">
-            <div class="hmw-insight-label">From Insight 3 — Safety has two currencies</div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Surface</div>
-              <p>How might we design a confirmation tap that simultaneously reassures the parent and protects the driver?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Structural</div>
-              <p>How might we build a record system that a driver can reference as legal evidence if an accusation is made?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Deep</div>
-              <p>How might we design an app where every single interaction serves both the parent's emotional need and the driver's legal need at the same time?</p>
-            </div>
-          </div>
-          <div class="hmw-block">
-            <div class="hmw-insight-label">From Insight 4 — The driver interface is a safety-critical tool</div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Surface</div>
-              <p>How might we design a confirmation screen that a driver can complete in under three seconds without taking their eyes off the road?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Structural</div>
-              <p>How might we use GPS to do the organising so the driver only has to confirm — never to navigate the app?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Deep</div>
-              <p>How might we design a driver interface where the app thinks ahead so the driver never has to?</p>
-            </div>
-          </div>
-          <div class="hmw-block">
-            <div class="hmw-insight-label">From Insight 5 — Fika sells relief, not transport</div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Surface</div>
-              <p>How might we design an arrival notification that feels warm and human rather than like a system message?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Structural</div>
-              <p>How might we design the tracking screen so that watching the car move converts anxiety into calm in real time?</p>
-            </div>
-            <div class="hmw-level">
-              <div class="hmw-level-label">Deep</div>
-              <p>How might we design an entire product experience that makes a parent feel like a good parent every single school morning — regardless of whether they can be there in person?</p>
-            </div>
-          </div>
+        <!-- 5. Personas -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">User Personas</h2>
+          <p>Two personas built from qualitative research. Each represents a real user type with real stakes.</p>
 
-          <!-- Personas -->
-          <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; color: var(--text-primary); margin: 2.5rem 0 1rem;">User Personas</h3>
-
-          <!-- Nomsa Persona -->
           <div class="persona-card">
             <div class="persona-header">
               <div class="persona-role-label">Parent Persona · Fika App</div>
               <div class="persona-name">Nomsa D., 34</div>
-              <div class="persona-subtitle">Admin clerk · Bellville, Cape Town · Android user · Single income household · Two children</div>
+              <div class="persona-subtitle">Admin clerk · Bellville, Cape Town · Android · Single income · Two children</div>
             </div>
             <div class="persona-quote">"It would make me feel like a better mother. Like I did something right for my children even though I cannot be there with them."</div>
             <div class="persona-stats">
@@ -1361,7 +493,7 @@
               <div class="persona-section">
                 <div class="persona-section-label">Goals</div>
                 <ul>
-                  <li>Know both children arrived safely without having to call</li>
+                  <li>Know both children arrived safely without calling</li>
                   <li>Feel like a responsible mother even when not present</li>
                   <li>Have someone accountable if something goes wrong</li>
                 </ul>
@@ -1369,10 +501,9 @@
               <div class="persona-section">
                 <div class="persona-section-label">Frustrations</div>
                 <ul>
-                  <li>Sitting at her desk, phone off, not knowing if they got there</li>
-                  <li>Informal drivers offer no contract, no insurance</li>
-                  <li>Word of mouth referrals don't cross neighbourhoods</li>
-                  <li>Communication depends on a 9 and 14 year old remembering</li>
+                  <li>Phone off at work — no way to check on the children</li>
+                  <li>No contract or insurance with informal drivers</li>
+                  <li>Word of mouth doesn't cross neighbourhoods</li>
                 </ul>
               </div>
               <div class="persona-section">
@@ -1380,7 +511,6 @@
                 <ul>
                   <li>Calls both children repeatedly until they confirm arrival</li>
                   <li>Asks neighbours to watch out on the route</li>
-                  <li>Explored informal drivers but couldn't commit without accountability</li>
                   <li>Takes time off work on mornings that feel unsafe</li>
                 </ul>
               </div>
@@ -1388,11 +518,11 @@
             <div class="persona-footer">
               <div class="persona-moment">
                 <div class="persona-section-label">The Moment That Matters</div>
-                <p>Nomsa is at her desk. Phone is off. It is 7:45. Amahle is 9 and walked to school with a neighbour's child. Liam is 14 — small for his age — and took the minibus taxi alone past the men who gather near the rank every morning. <strong style="color: var(--accent);">Nomsa will not know if either of them arrived safely until her lunch break.</strong> That feeling sits with her every single school morning. Fika exists to end that moment.</p>
+                <p>Nomsa is at her desk. Phone is off. It is 7:45. Amahle is 9 and walked with a neighbour's child. Liam is 14 and took the minibus taxi alone past the men near the rank. <strong style="color: var(--accent);">Nomsa will not know if either of them arrived safely until her lunch break.</strong> That feeling sits with her every single school morning. Fika exists to end that moment.</p>
               </div>
               <div class="persona-insight">
                 <div class="persona-section-label">Key Design Insight</div>
-                <p>Nomsa is not paying for transport. She is paying to feel like a good mother despite impossible circumstances. The arrived notification is not a system message — it is the moment she exhales. It must feel warm and immediate. Price must only appear after she has seen vetting, tracking, and accountability. Shown too early it feels expensive. Shown after trust is built, it feels fair.</p>
+                <p>Nomsa is not paying for transport. She is paying to feel like a good mother despite impossible circumstances. The arrived notification is the moment she exhales. It must feel warm and immediate. Price must only appear after she has seen vetting, tracking, and accountability — shown too early it feels expensive, shown after trust is built it feels fair.</p>
               </div>
             </div>
             <div class="persona-tags">
@@ -1403,12 +533,11 @@
             </div>
           </div>
 
-          <!-- Sipho Persona -->
-          <div class="persona-card" style="margin-top: 2rem;">
-            <div class="persona-header" style="background: linear-gradient(135deg, #0a0a14 0%, #101020 100%);">
+          <div class="persona-card">
+            <div class="persona-header driver">
               <div class="persona-role-label">Driver Persona · Fika App</div>
               <div class="persona-name">Sipho M., 29</div>
-              <div class="persona-subtitle">Informal school transport driver · Brackenfell, Cape Town · 2018 Toyota Corolla · Owner-operator · 2 years experience</div>
+              <div class="persona-subtitle">Informal school driver · Brackenfell, Cape Town · 2018 Toyota Corolla · 2 years experience</div>
             </div>
             <div class="persona-quote">"I just want to do it properly. With the right tools. So that everyone — the parents, the children, me — everyone feels safe and respected. That is all I want."</div>
             <div class="persona-stats">
@@ -1433,32 +562,32 @@
               <div class="persona-section">
                 <div class="persona-section-label">Goals</div>
                 <ul>
-                  <li>A verifiable record of every drop-off if something goes wrong</li>
-                  <li>Absence alerts before he leaves — not after the trip</li>
-                  <li>The app handles communication — he handles the driving</li>
+                  <li>A verifiable record of every drop-off</li>
+                  <li>Absence alerts before he leaves — not after</li>
+                  <li>App handles communication — he handles driving</li>
                 </ul>
               </div>
               <div class="persona-section">
                 <div class="persona-section-label">Frustrations</div>
                 <ul>
-                  <li>Accused without evidence and no way to defend himself</li>
-                  <li>Parents who know a child is absent but stay silent until he arrives</li>
+                  <li>Accused without evidence, no way to defend himself</li>
+                  <li>Parents silent about absences until he arrives</li>
                   <li>Wasted fuel on trips he cannot recover</li>
                 </ul>
               </div>
               <div class="persona-section">
                 <div class="persona-section-label">Behaviours</div>
                 <ul>
-                  <li>Plans the full route the night before — no time to think in the morning</li>
+                  <li>Plans full route the night before</li>
                   <li>Waits 2–4 minutes per drop to watch each child go inside</li>
-                  <li>Takes personal screenshots to protect himself when things go wrong</li>
+                  <li>Takes personal screenshots to protect himself</li>
                 </ul>
               </div>
             </div>
             <div class="persona-footer">
               <div class="persona-moment">
                 <div class="persona-section-label">The Moment That Matters</div>
-                <p>Sipho dropped Kavelo at school and watched him walk through the gate. That afternoon, the mother called — the school said he was never in class. She accused Sipho of not bringing him. <strong style="color: var(--accent);">For three hours, Sipho had nothing to show her. No timestamp. No record.</strong> Kavelo had left through a hole in the fence. The mother apologised — but the three hours without proof stayed with Sipho long after. This is not hypothetical. This already happened.</p>
+                <p>Sipho dropped Kavelo at school and watched him walk through the gate. That afternoon the mother called — the school said he was never in class. She accused Sipho of not bringing him. <strong style="color: var(--accent);">For three hours, Sipho had nothing to show her. No timestamp. No record.</strong> Kavelo had left through a hole in the fence. The mother apologised — but those three hours without proof stayed with Sipho long after. This is not hypothetical. This already happened.</p>
               </div>
               <div class="persona-insight">
                 <div class="persona-section-label">Key Design Insight</div>
@@ -1474,44 +603,51 @@
           </div>
         </section>
 
-        <!-- Coming Next -->
+        <!-- 6. Coming Next -->
         <section class="case-section reveal">
-          <h2 class="case-section-title">Coming Next</h2>
-          <p>Stage 3 — Problem Framing and Information Architecture is currently in progress. User journey maps, IA structure for both interfaces, and the full screen inventory will be added here as each stage is completed.</p>
+          <h2 class="case-section-title">What Comes Next</h2>
+          <p>Stage 3 — Information Architecture is currently in progress. User journey maps, IA structure for both interfaces, and high-fidelity wireframes will be added here as each stage completes.</p>
           <div class="stage-tracker" style="margin-top: 1.5rem;">
-            <div class="stage-pill complete">Stage 1 — Empathy ✓</div>
-            <div class="stage-pill complete">Stage 2 — Research ✓</div>
-            <div class="stage-pill pending">Stage 3 — IA</div>
-            <div class="stage-pill pending">Stage 4 — Wireframes</div>
-            <div class="stage-pill pending">Stage 5 — Testing</div>
-            <div class="stage-pill pending">Stage 6 — Strategy</div>
+            <div class="stage-pill complete">✓ Stage 1 — Empathy</div>
+            <div class="stage-pill complete">✓ Stage 2 — Research</div>
+            <div class="stage-pill">○ Stage 3 — IA</div>
+            <div class="stage-pill">○ Stage 4 — Wireframes</div>
+            <div class="stage-pill">○ Stage 5 — Testing</div>
+            <div class="stage-pill">○ Stage 6 — Strategy</div>
           </div>
         </section>
 
-        <!-- Navigation -->
+        <!-- 7. Full Documentation -->
+        <section class="case-section reveal">
+          <div class="pdf-block">
+            <div class="pdf-block-label">Full Documentation</div>
+            <h3>Read the complete case study</h3>
+            <p>All research findings, empathy maps, synthesis clusters, How Might We questions, and strategic business case documented in full.</p>
+            <span class="btn btn-outline" style="opacity: 0.5; cursor: not-allowed; pointer-events: none; display: inline-block;">PDF Available on Completion</span>
+          </div>
+        </section>
+
+        <!-- Nav -->
         <div style="display:flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem;">
           <a href="case-study-1.html" class="btn btn-ghost">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
-              stroke-width="1.5" style="transform: none;">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="transform: none;">
               <path d="M13 8H3M7 4L3 8l4 4" />
             </svg>
             LinkedIn UX Audit
           </a>
           <a href="work.html" class="btn btn-outline">All Projects</a>
         </div>
+
       </div>
     </main>
 
-    <!-- ── Footer ── -->
     <footer>
       <div class="container">
         <div class="footer-inner">
           <p class="footer-copy">© 2026 <span>Chris Lufuilu</span>. All rights reserved.</p>
           <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/chris-l-036564230/"
-              target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://www.behance.net/chrislufuilu" target="_blank"
-              rel="noopener noreferrer">Behance</a>
+            <a href="https://www.linkedin.com/in/chris-l-036564230/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.behance.net/chrislufuilu" target="_blank" rel="noopener noreferrer">Behance</a>
             <a href="mailto:Chrislufuilu723@gmail.com">Email</a>
           </div>
         </div>
@@ -1519,8 +655,7 @@
     </footer>
 
     <button class="scroll-top" aria-label="Scroll to top">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
-        stroke-width="1.5">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M8 13V3M3 8l5-5 5 5" />
       </svg>
     </button>
