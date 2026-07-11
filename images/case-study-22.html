@@ -283,26 +283,6 @@
       .roadmap-plan-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
       .roadmap-plan-list li:last-child { border-bottom: none; }
       .roadmap-plan-list li strong { color: var(--text-primary); }
-
-      /* Screen showcase */
-      .screen-showcase { margin: 2rem 0; }
-      .screen-showcase-label {
-        font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-        color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.6rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .screen-row {
-        display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
-        margin-bottom: 2.5rem;
-      }
-      @media (max-width: 700px) { .screen-row { grid-template-columns: repeat(2, 1fr); } }
-      .screen-item { display: flex; flex-direction: column; }
-      .screen-item img {
-        width: 100%; border-radius: 12px; border: 1px solid var(--border);
-        margin-bottom: 0.75rem; display: block;
-      }
-      .screen-item-title { font-size: 0.85rem; color: var(--text-primary); font-weight: 500; margin-bottom: 0.3rem; }
-      .screen-item-desc { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.5; }
     </style>
   </head>
   <body>
@@ -374,9 +354,9 @@
           </div>
         </div>
 
-        <div class="reveal" style="aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden; background: #0F2A0F; display:flex; align-items:center; justify-content:center;">
-          <img src="images/cover (2).png" alt="Fika Welcome and Arrived screens"
-            style="height:100%; width:auto; object-fit: contain;" />
+        <div class="reveal" style="aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden; background: #f4f4f2;">
+          <img src="images/fika-screen-board.png" alt="Full Fika screen board — 12 parent-facing and 13 driver-facing screens"
+            style="width:100%; height:100%; object-fit: cover; object-position: top;" />
         </div>
       </div>
     </header>
@@ -760,55 +740,10 @@
             </div>
           </div>
 
-          <div class="screen-showcase reveal">
-            <div class="screen-showcase-label">Parent Screens</div>
-            <div class="screen-row">
-              <div class="screen-item">
-                <img src="images/screens/Welcome screen.png" alt="Fika Welcome screen" />
-                <div class="screen-item-title">Welcome</div>
-                <div class="screen-item-desc">Trust badges up front — verified drivers, live tracking, background checks — before a parent is asked for anything.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Add child profile Screen.png" alt="Fika Add Child Profile screen" />
-                <div class="screen-item-title">Add Child Profile</div>
-                <div class="screen-item-desc">One committed step at a time. Guards against the Paradox of Choice — an anxious parent won't finish a form that asks everything at once.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Screen 10 — Pickup notification.png" alt="Fika live tracking screen" />
-                <div class="screen-item-title">Live Tracking</div>
-                <div class="screen-item-desc">The moving dot Nomsa watches on her commute. Familiar Uber/Bolt mental model, on purpose — no learning curve during an anxious moment.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Screen 11 — Arrived.png" alt="Fika arrived notification screen" />
-                <div class="screen-item-title">Arrived</div>
-                <div class="screen-item-desc">The Peak End Rule payoff. This is the moment a parent exhales — it has to feel warm, not like a system message.</div>
-              </div>
-            </div>
-
-            <div class="screen-showcase-label">Driver Screens</div>
-            <div class="screen-row" style="margin-bottom: 0;">
-              <div class="screen-item">
-                <img src="images/screens/Home shift dashboard.png" alt="Fika driver home shift dashboard" />
-                <div class="screen-item-title">Shift Dashboard</div>
-                <div class="screen-item-desc">Sipho sees who's confirmed and who's absent before he even leaves home — no surprises discovered on arrival.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/time logo.png" alt="Fika driver start shift screen" />
-                <div class="screen-item-title">Start Shift</div>
-                <div class="screen-item-desc">Medical notes surface using the Von Restorff Effect — Amahle's allergy note visually separates from routine information.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Client screen — today's manifest.png" alt="Fika driver today's manifest screen" />
-                <div class="screen-item-title">Today's Manifest</div>
-                <div class="screen-item-desc">Confirmed, absent, and by-school grouping in one scroll — Sipho never has to search or guess who's coming.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Route complete.png" alt="Fika driver route complete screen" />
-                <div class="screen-item-title">Route Complete</div>
-                <div class="screen-item-desc">Every drop-off, timestamped, all parents already notified. This is Sipho's protection — the system as witness.</div>
-              </div>
-            </div>
+          <div class="reveal" style="border-radius: var(--radius-lg); overflow:hidden; margin: 1.5rem 0; border: 1px solid var(--border);">
+            <img src="images/fika-screen-board.png" alt="Full Fika screen board — all 25 parent and driver screens" style="width:100%; display:block;" />
           </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); text-align:center;">The full screen board — every parent and driver screen, side by side.</p>
         </section>
 
         <!-- 8. Stage 5 & 6 — Roadmap -->

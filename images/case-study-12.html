@@ -245,64 +245,6 @@
       .pdf-block-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
       .pdf-block h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--text-primary); margin-bottom: 0.75rem; }
       .pdf-block p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-
-      /* IA columns */
-      .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
-      @media (max-width: 600px) { .ia-grid { grid-template-columns: 1fr; } }
-      .ia-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; }
-      .ia-card-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-      .ia-section { padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
-      .ia-section:last-child { border-bottom: none; }
-      .ia-section-num { font-family: var(--font-display); color: var(--accent); font-size: 0.85rem; margin-right: 0.4rem; }
-      .ia-section-name { font-size: 0.88rem; color: var(--text-primary); font-weight: 500; }
-      .ia-section-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-top: 0.25rem; }
-
-      /* Design system swatches */
-      .ds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
-      @media (max-width: 600px) { .ds-grid { grid-template-columns: 1fr; } }
-      .ds-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; }
-      .ds-card-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-      .ds-swatch-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-      .ds-swatch { flex: 1; text-align: center; }
-      .ds-swatch-color { width: 100%; aspect-ratio: 1; border-radius: 8px; margin-bottom: 0.4rem; border: 1px solid var(--border); }
-      .ds-swatch-name { font-size: 0.68rem; color: var(--text-secondary); }
-      .ds-type-sample { font-size: 0.82rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
-      .ds-type-sample:last-child { border-bottom: none; }
-      .ds-type-sample strong { display: block; color: var(--text-primary); font-size: 1rem; margin-bottom: 0.15rem; }
-
-      /* Roadmap (Stage 5 / 6) */
-      .roadmap-card {
-        background: var(--bg-card); border: 1px dashed var(--border); border-radius: var(--radius);
-        padding: 1.8rem; margin: 1.5rem 0;
-      }
-      .roadmap-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; }
-      .roadmap-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 300; color: var(--text-primary); margin-bottom: 0.75rem; }
-      .roadmap-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin: 0 0 0.9rem 0; }
-      .roadmap-card p:last-child { margin-bottom: 0; }
-      .roadmap-plan-list { list-style: none; padding: 0; margin: 0.75rem 0 0 0; }
-      .roadmap-plan-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
-      .roadmap-plan-list li:last-child { border-bottom: none; }
-      .roadmap-plan-list li strong { color: var(--text-primary); }
-
-      /* Screen showcase */
-      .screen-showcase { margin: 2rem 0; }
-      .screen-showcase-label {
-        font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-        color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.6rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .screen-row {
-        display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
-        margin-bottom: 2.5rem;
-      }
-      @media (max-width: 700px) { .screen-row { grid-template-columns: repeat(2, 1fr); } }
-      .screen-item { display: flex; flex-direction: column; }
-      .screen-item img {
-        width: 100%; border-radius: 12px; border: 1px solid var(--border);
-        margin-bottom: 0.75rem; display: block;
-      }
-      .screen-item-title { font-size: 0.85rem; color: var(--text-primary); font-weight: 500; margin-bottom: 0.3rem; }
-      .screen-item-desc { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.5; }
     </style>
   </head>
   <body>
@@ -374,9 +316,15 @@
           </div>
         </div>
 
-        <div class="reveal" style="aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden; background: #0F2A0F; display:flex; align-items:center; justify-content:center;">
-          <img src="images/cover (2).png" alt="Fika Welcome and Arrived screens"
-            style="height:100%; width:auto; object-fit: contain;" />
+        <div class="img-placeholder reveal"
+          style="aspect-ratio: 21/9; border-radius: var(--radius-lg); background: linear-gradient(135deg, #0e1a0e 0%, #162016 100%);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+            style="opacity:0.3; color: var(--accent); width: 64px; height: 64px;">
+            <rect x="7" y="2" width="10" height="20" rx="2" />
+            <circle cx="12" cy="18" r="1" />
+            <line x1="10" y1="6" x2="14" y2="6" />
+          </svg>
+          <span>App Screens — Coming in Stage 4</span>
         </div>
       </div>
     </header>
@@ -388,7 +336,7 @@
         <div class="in-progress-banner reveal">
           <div class="in-progress-dot"></div>
           <div class="in-progress-text">
-            <strong>Case study in progress.</strong> Stages 1 through 4 are complete — research, IA, and all 25 high-fidelity screens. Usability testing and strategic thinking are next.
+            <strong>Case study in progress.</strong> Stages 1 and 2 are complete. Wireframes and screens will be added as each stage completes.
           </div>
         </div>
 
@@ -396,8 +344,8 @@
         <div class="stage-tracker reveal">
           <div class="stage-pill complete">✓ Stage 1 — Empathy</div>
           <div class="stage-pill complete">✓ Stage 2 — Research</div>
-          <div class="stage-pill complete">✓ Stage 3 — IA</div>
-          <div class="stage-pill complete">✓ Stage 4 — Wireframes</div>
+          <div class="stage-pill">○ Stage 3 — IA</div>
+          <div class="stage-pill">○ Stage 4 — Wireframes</div>
           <div class="stage-pill">○ Stage 5 — Testing</div>
           <div class="stage-pill">○ Stage 6 — Strategy</div>
         </div>
@@ -411,10 +359,6 @@
           <div class="cs-stat">
             <div class="cs-stat-number">21</div>
             <div class="cs-stat-label">Research Findings</div>
-          </div>
-          <div class="cs-stat">
-            <div class="cs-stat-number">25</div>
-            <div class="cs-stat-label">Hi-Fi Screens</div>
           </div>
           <div class="cs-stat">
             <div class="cs-stat-number">3s</div>
@@ -659,180 +603,17 @@
           </div>
         </section>
 
-        <!-- 6. Stage 3 — Problem Framing & IA -->
+        <!-- 6. Coming Next -->
         <section class="case-section reveal">
-          <h2 class="case-section-title">Stage 3 — Problem Framing & Information Architecture</h2>
-          <p>Research findings needed a structure to live in. This stage refined the problem statement and translated 21 findings into two clear information architectures — one per interface — built entirely around what each user actually needs, not a generic app template.</p>
-
-          <div class="research-quote" style="margin-top: 1.5rem;">
-            <p>Cape Town parents of primary and high school learners struggle to trust their children's safety travelling to and from school — because there is no affordable, child-only, trustworthy transport solution that gives them real visibility into whether their child arrived safely. The current system offers no safety assurance for drivers, no protection when parents act out of fear, and no structured communication channel when something unexpected happens. It also creates a road safety risk when drivers navigate unfamiliar routes with children in the car.</p>
-            <cite>— Refined Problem Statement, Stage 3</cite>
-          </div>
-
-          <div class="ia-grid">
-            <div class="ia-card">
-              <div class="ia-card-label">Parent App — 5 Sections</div>
-              <div class="ia-section">
-                <span class="ia-section-num">01</span><span class="ia-section-name">Onboarding</span>
-                <div class="ia-section-desc">Register, add children, select area, submit application, await approval.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">02</span><span class="ia-section-name">Home Dashboard</span>
-                <div class="ia-section-desc">Live trip status, active driver info, pickup/drop-off/absence shortcuts.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">03</span><span class="ia-section-name">Tracking</span>
-                <div class="ia-section-desc">Full live map, real-time location, route progress, ETA.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">04</span><span class="ia-section-name">My Children</span>
-                <div class="ia-section-desc">Child profiles, trip schedule, absence notification.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">05</span><span class="ia-section-name">Account</span>
-                <div class="ia-section-desc">Payment management, settings, complaints and reports.</div>
-              </div>
-            </div>
-
-            <div class="ia-card">
-              <div class="ia-card-label">Driver App — 4 Sections</div>
-              <div class="ia-section">
-                <span class="ia-section-num">01</span><span class="ia-section-name">Home — Shift Dashboard</span>
-                <div class="ia-section-desc">Driver profile, start shift, today's confirmed children and schools.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">02</span><span class="ia-section-name">Client Screen — Manifest</span>
-                <div class="ia-section-desc">Who's confirmed, who's absent, pickup order, school start times.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">03</span><span class="ia-section-name">Active Route</span>
-                <div class="ia-section-desc">GPS navigation, one-tap Picked Up / Dropped Off confirmations.</div>
-              </div>
-              <div class="ia-section">
-                <span class="ia-section-num">04</span><span class="ia-section-name">Reports</span>
-                <div class="ia-section-desc">Incident reports, complaint log, full timestamped trip history.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cross-insight">
-            <div class="cross-insight-label">The Core IA Insight</div>
-            <p>The parent's tracking screen and the driver's active route screen are powered by the same live data. The parent sees the car moving toward the school. The driver generates that movement. One data source. Two interfaces. Two users served simultaneously.</p>
-          </div>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Full user journey maps for both Nomsa and Sipho — covering every stage from morning preparation to first confirmation — are documented in the complete PDF.</p>
-        </section>
-
-        <!-- 7. Stage 4 — Design System & Screens -->
-        <section class="case-section reveal">
-          <h2 class="case-section-title">Stage 4 — High-Fidelity Screens</h2>
-          <p>All 25 screens — 12 parent-facing, 13 driver-facing — built in Figma on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done.</p>
-
-          <div class="ds-grid">
-            <div class="ds-card">
-              <div class="ds-card-label">Colour System</div>
-              <div class="ds-swatch-row">
-                <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#ffffff;"></div>
-                  <div class="ds-swatch-name">Background</div>
-                </div>
-                <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#0F2A0F;"></div>
-                  <div class="ds-swatch-name">Deep Forest</div>
-                </div>
-                <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#3d7a3d;"></div>
-                  <div class="ds-swatch-name">Accent</div>
-                </div>
-              </div>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Dark green is reserved for primary CTA buttons only, following the 60-30-10 rule — so the one action that matters on each screen always stands out.</p>
-            </div>
-
-            <div class="ds-card">
-              <div class="ds-card-label">Typography</div>
-              <div class="ds-type-sample">
-                <strong style="font-family: var(--font-display);">DM Serif Display</strong>
-                Headlines only — 28–32px, bold. Gives Fika warmth against an otherwise functional app.
-              </div>
-              <div class="ds-type-sample">
-                <strong>DM Sans</strong>
-                Everything else — body copy, labels, buttons. Clean and highly legible at small sizes.
-              </div>
-            </div>
-          </div>
-
-          <div class="screen-showcase reveal">
-            <div class="screen-showcase-label">Parent Screens</div>
-            <div class="screen-row">
-              <div class="screen-item">
-                <img src="images/screens/Welcome screen.png" alt="Fika Welcome screen" />
-                <div class="screen-item-title">Welcome</div>
-                <div class="screen-item-desc">Trust badges up front — verified drivers, live tracking, background checks — before a parent is asked for anything.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Add child profile Screen.png" alt="Fika Add Child Profile screen" />
-                <div class="screen-item-title">Add Child Profile</div>
-                <div class="screen-item-desc">One committed step at a time. Guards against the Paradox of Choice — an anxious parent won't finish a form that asks everything at once.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Screen 10 — Pickup notification.png" alt="Fika live tracking screen" />
-                <div class="screen-item-title">Live Tracking</div>
-                <div class="screen-item-desc">The moving dot Nomsa watches on her commute. Familiar Uber/Bolt mental model, on purpose — no learning curve during an anxious moment.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Screen 11 — Arrived.png" alt="Fika arrived notification screen" />
-                <div class="screen-item-title">Arrived</div>
-                <div class="screen-item-desc">The Peak End Rule payoff. This is the moment a parent exhales — it has to feel warm, not like a system message.</div>
-              </div>
-            </div>
-
-            <div class="screen-showcase-label">Driver Screens</div>
-            <div class="screen-row" style="margin-bottom: 0;">
-              <div class="screen-item">
-                <img src="images/screens/Home shift dashboard.png" alt="Fika driver home shift dashboard" />
-                <div class="screen-item-title">Shift Dashboard</div>
-                <div class="screen-item-desc">Sipho sees who's confirmed and who's absent before he even leaves home — no surprises discovered on arrival.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/time logo.png" alt="Fika driver start shift screen" />
-                <div class="screen-item-title">Start Shift</div>
-                <div class="screen-item-desc">Medical notes surface using the Von Restorff Effect — Amahle's allergy note visually separates from routine information.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Client screen — today's manifest.png" alt="Fika driver today's manifest screen" />
-                <div class="screen-item-title">Today's Manifest</div>
-                <div class="screen-item-desc">Confirmed, absent, and by-school grouping in one scroll — Sipho never has to search or guess who's coming.</div>
-              </div>
-              <div class="screen-item">
-                <img src="images/screens/Route complete.png" alt="Fika driver route complete screen" />
-                <div class="screen-item-title">Route Complete</div>
-                <div class="screen-item-desc">Every drop-off, timestamped, all parents already notified. This is Sipho's protection — the system as witness.</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 8. Stage 5 & 6 — Roadmap -->
-        <section class="case-section reveal">
-          <h2 class="case-section-title">What's Next</h2>
-          <p>Two stages remain, and they're sequenced deliberately rather than skipped.</p>
-
-          <div class="roadmap-card">
-            <div class="roadmap-label">○ Stage 5 — Usability Testing</div>
-            <h3>Not yet run — and here's why</h3>
-            <p>Testing a partial interface risks surfacing problems that a completed information architecture would have already resolved on its own. All 25 screens across both interfaces were only just finished, so priority went into completing full coverage first — testing comes next, against a whole product rather than fragments of one.</p>
-            <p>The test plan itself was written back in Stage 1, before a single screen existed:</p>
-            <ul class="roadmap-plan-list">
-              <li><strong>Registration:</strong> Can a first-time parent complete registration without confusion or abandonment?</li>
-              <li><strong>Tracking:</strong> Does the parent feel reassured the moment they see the tracking screen?</li>
-              <li><strong>Driver route:</strong> Can a driver complete pickups, navigation, and confirmations without looking at the screen for more than 3 seconds at a time?</li>
-              <li><strong>Arrival:</strong> Does the arrived notification land as warm and trustworthy, or cold and robotic?</li>
-            </ul>
-          </div>
-
-          <div class="roadmap-card">
-            <div class="roadmap-label">○ Stage 6 — Strategic Leadership Thinking</div>
-            <h3>Following testing, not before it</h3>
-            <p>This final stage connects Fika's design decisions to business outcomes — the monetisation model, what actually drives retention, and how a trust-building product like this creates defensible value for a transport company rather than just a nice user experience. It's sequenced after usability testing on purpose: real user feedback should inform which business risks get prioritised first, not the other way around.</p>
+          <h2 class="case-section-title">What Comes Next</h2>
+          <p>Stage 3 — Information Architecture is currently in progress. User journey maps, IA structure for both interfaces, and high-fidelity wireframes will be added here as each stage completes.</p>
+          <div class="stage-tracker" style="margin-top: 1.5rem;">
+            <div class="stage-pill complete">✓ Stage 1 — Empathy</div>
+            <div class="stage-pill complete">✓ Stage 2 — Research</div>
+            <div class="stage-pill">○ Stage 3 — IA</div>
+            <div class="stage-pill">○ Stage 4 — Wireframes</div>
+            <div class="stage-pill">○ Stage 5 — Testing</div>
+            <div class="stage-pill">○ Stage 6 — Strategy</div>
           </div>
         </section>
 
@@ -840,9 +621,9 @@
         <section class="case-section reveal">
           <div class="pdf-block">
             <div class="pdf-block-label">Full Documentation</div>
-            <h3>Read Stages 1–3 in full</h3>
-            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, and journey maps — documented in complete detail. A full version covering Stages 4–6 will replace this once usability testing and strategic thinking are complete.</p>
-            <a href="documents/fika-case-study-stages-1-3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-block;">Download PDF</a>
+            <h3>Read the complete case study</h3>
+            <p>All research findings, empathy maps, synthesis clusters, How Might We questions, and strategic business case documented in full.</p>
+            <span class="btn btn-outline" style="opacity: 0.5; cursor: not-allowed; pointer-events: none; display: inline-block;">PDF Available on Completion</span>
           </div>
         </section>
 
