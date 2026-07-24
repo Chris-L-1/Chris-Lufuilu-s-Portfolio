@@ -740,9 +740,9 @@
           <div class="ds-grid">
             <div class="ds-card">
               <div class="ds-card-label">Colour System</div>
-              <div class="ds-swatch-row">
+              <div class="ds-swatch-row" style="flex-wrap:wrap; gap:0.75rem;">
                 <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#ffffff;"></div>
+                  <div class="ds-swatch-color" style="background:#ffffff; border: 1px solid #333;"></div>
                   <div class="ds-swatch-name">Background</div>
                 </div>
                 <div class="ds-swatch">
@@ -753,8 +753,16 @@
                   <div class="ds-swatch-color" style="background:#3d7a3d;"></div>
                   <div class="ds-swatch-name">Accent</div>
                 </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#F59E0B;"></div>
+                  <div class="ds-swatch-name">Amber</div>
+                </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#DC2626;"></div>
+                  <div class="ds-swatch-name">Alert Red</div>
+                </div>
               </div>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Dark green is reserved for primary CTA buttons only, following the 60-30-10 rule — so the one action that matters on each screen always stands out.</p>
+              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Each colour carries a single semantic meaning across both interfaces. Deep Forest and Accent green handle all success and confirmation states. Amber signals caution — GPS warnings, medical notes, and the rejection screen. Red is reserved exclusively for absence and no-show alerts, where a parent or driver needs to act immediately. No colour ever means two things.</p>
             </div>
 
             <div class="ds-card">
