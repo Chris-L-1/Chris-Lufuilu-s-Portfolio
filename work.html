@@ -82,11 +82,11 @@
           style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
           <span
             style="font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-right: 0.5rem;">Filter:</span>
-          <button class="tag"
+          <button class="tag work-filter-btn" data-filter="all"
             style="cursor: none; background: var(--accent-dim); border-color: var(--accent);">All</button>
-          <button class="tag neutral" style="cursor: none;">UX Research</button>
-          <button class="tag neutral" style="cursor: none;">UI Design</button>
-          <button class="tag neutral" style="cursor: none;">Mobile</button>
+          <button class="tag neutral work-filter-btn" data-filter="ux-research" style="cursor: none;">UX Research</button>
+          <button class="tag neutral work-filter-btn" data-filter="ui-design" style="cursor: none;">UI Design</button>
+          <button class="tag neutral work-filter-btn" data-filter="mobile" style="cursor: none;">Mobile</button>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
       <div class="work-grid">
 
         <!-- Project 1: LinkedIn UX Audit -->
-        <article class="project-card reveal">
+        <article class="project-card reveal" data-tags="ux-research">
           <div class="project-thumb" style="background:#0e1a2e;">
             <img src="images/cs1-hero.png" alt="LinkedIn wireframe overview"
               style="width:100%;height:100%;object-fit:contain;display:block;">
@@ -136,19 +136,11 @@
         </article>
 
         <!-- Project 2: FIKA — Dual-Interface School Transport App -->
-        <article class="project-card reveal reveal-delay-1">
+        <article class="project-card reveal reveal-delay-1" data-tags="ux-research ui-design mobile">
           <div class="project-thumb">
-            <div class="project-thumb">
-              <img src="images/fika.png"
-                alt="FIKA app cover — parent and driver screens"
-                style="width:100%; height:100%; object-fit:cover;" />
-              <div class="project-thumb-overlay">
-                <a href="case-study-2.html" class="btn btn-primary overlay-btn"
-                  style="font-size:0.72rem;">
-                  View Case Study
-                </a>
-              </div>
-            </div>
+            <img src="images/fika.png"
+              alt="FIKA app cover — parent and driver screens"
+              style="width:100%; height:100%; object-fit:cover;" />
             <div class="project-thumb-overlay">
               <a href="case-study-2.html" class="btn btn-primary overlay-btn"
                 style="font-size:0.72rem;">
@@ -212,7 +204,7 @@
               to discuss collaboration opportunities.
             </p>
             <div class="project-footer">
-              <span class="project-num">,</span>
+              <span class="project-num">— / —</span>
               <a href="contact.html" class="btn btn-ghost"
                 style="font-size:0.72rem; padding: 0.55rem 1.1rem;">
                 Let's Collaborate
@@ -228,7 +220,7 @@
     <footer>
       <div class="container">
         <div class="footer-inner">
-          <p class="footer-copy">© 2025 <span>Chris Lufuilu</span>. All rights
+          <p class="footer-copy">© 2026 <span>Chris Lufuilu</span>. All rights
             reserved.</p>
           <div class="footer-socials">
             <a href="https://www.linkedin.com/in/chris-l-036564230/"

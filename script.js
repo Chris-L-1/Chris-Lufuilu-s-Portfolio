@@ -203,4 +203,29 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.cursor = 'none';
   });
 
+  /* ── Work Page Filtering ─────────────────── */
+  const filterBtns = document.querySelectorAll('.work-filter-btn');
+  const projectCards = document.querySelectorAll('.project-card[data-tags]');
+  if (filterBtns.length && projectCards.length) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.add('neutral');
+          b.style.background = '';
+          b.style.borderColor = '';
+        });
+        btn.classList.remove('neutral');
+        btn.style.background = 'var(--accent-dim)';
+        btn.style.borderColor = 'var(--accent)';
+
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ');
+          const match = filter === 'all' || tags.includes(filter);
+          card.style.display = match ? '' : 'none';
+        });
+      });
+    });
+  }
+
 });
