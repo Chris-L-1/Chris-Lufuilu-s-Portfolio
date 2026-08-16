@@ -284,6 +284,60 @@
       .roadmap-plan-list li:last-child { border-bottom: none; }
       .roadmap-plan-list li strong { color: var(--text-primary); }
 
+      /* Stage 5 — Heuristic Evaluation */
+      .eval-method {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.8rem;
+        margin: 1.5rem 0;
+      }
+      .eval-method p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin: 0 0 0.9rem 0; }
+      .eval-method p:last-child { margin-bottom: 0; }
+      .eval-method strong { color: var(--text-primary); font-weight: 500; }
+
+      .finding-list { display: flex; flex-direction: column; gap: 1.2rem; margin: 1.5rem 0; }
+      .finding-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius);
+        padding: 1.6rem 1.8rem;
+      }
+      .finding-card.severity-high { border-left-color: #DC2626; }
+      .finding-card.severity-medium { border-left-color: #F59E0B; }
+      .finding-top {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;
+      }
+      .finding-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 300; color: var(--text-primary); }
+      .finding-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+      .finding-tag {
+        font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
+        padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap;
+        border: 1px solid var(--border); color: var(--text-secondary);
+      }
+      .finding-tag.severity-high { color: #DC2626; border-color: #DC2626; }
+      .finding-tag.severity-medium { color: #F59E0B; border-color: #F59E0B; }
+      .finding-tag.severity-low { color: var(--text-secondary); }
+      .finding-body { display: flex; flex-direction: column; gap: 0.7rem; }
+      .finding-row { display: flex; gap: 0.8rem; align-items: baseline; }
+      .finding-label {
+        font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--accent); min-width: 62px; flex-shrink: 0; padding-top: 0.15rem;
+      }
+      .finding-row p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+      .eval-minor {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+      }
+      .eval-minor-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; }
+      .eval-minor ul { list-style: none; padding: 0; margin: 0; }
+      .eval-minor li { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+      .eval-minor li:last-child { border-bottom: none; }
+      .eval-minor li strong { color: var(--text-primary); font-weight: 500; }
+
       /* Screen showcase */
       .screen-showcase { margin: 2rem 0; }
       .screen-showcase-label {
@@ -388,7 +442,7 @@
         <div class="in-progress-banner reveal">
           <div class="in-progress-dot"></div>
           <div class="in-progress-text">
-            <strong>Case study in progress.</strong> Stages 1 through 4 are complete — research, IA, and all 25 high-fidelity screens. Usability testing and strategic thinking are next.
+            <strong>Case study in progress.</strong> Stages 1 through 5 are complete — research, IA, all 25 high-fidelity screens, and a full heuristic self-evaluation. Strategic thinking is next.
           </div>
         </div>
 
@@ -398,7 +452,7 @@
           <div class="stage-pill complete">✓ Stage 2 — Research</div>
           <div class="stage-pill complete">✓ Stage 3 — IA</div>
           <div class="stage-pill complete">✓ Stage 4 — Wireframes</div>
-          <div class="stage-pill">○ Stage 5 — Testing</div>
+          <div class="stage-pill complete">✓ Stage 5 — Evaluation</div>
           <div class="stage-pill">○ Stage 6 — Strategy</div>
         </div>
 
@@ -829,28 +883,111 @@
           </div>
         </section>
 
-        <!-- 8. Stage 5 & 6 — Roadmap -->
+        <!-- 8. Stage 5 — Heuristic Evaluation -->
         <section class="case-section reveal">
-          <h2 class="case-section-title">What's Next</h2>
-          <p>Two stages remain, and they're sequenced deliberately rather than skipped.</p>
+          <h2 class="case-section-title">Stage 5 — Usability Evaluation</h2>
 
-          <div class="roadmap-card">
-            <div class="roadmap-label">○ Stage 5 — Usability Testing</div>
-            <h3>Not yet run — and here's why</h3>
-            <p>Testing a partial interface risks surfacing problems that a completed information architecture would have already resolved on its own. All 25 screens across both interfaces were only just finished, so priority went into completing full coverage first — testing comes next, against a whole product rather than fragments of one.</p>
-            <p>The test plan itself was written back in Stage 1, before a single screen existed:</p>
-            <ul class="roadmap-plan-list">
-              <li><strong>Registration:</strong> Can a first-time parent complete registration without confusion or abandonment?</li>
-              <li><strong>Tracking:</strong> Does the parent feel reassured the moment they see the tracking screen?</li>
-              <li><strong>Driver route:</strong> Can a driver complete pickups, navigation, and confirmations without looking at the screen for more than 3 seconds at a time?</li>
-              <li><strong>Arrival:</strong> Does the arrived notification land as warm and trustworthy, or cold and robotic?</li>
+          <div class="eval-method">
+            <p><strong>No participants were available for this round, so this is a self-evaluation, not user testing</strong> — and it's labelled that way deliberately rather than dressed up as something it isn't. I walked every screen in both flows against two things: the real test questions written back in Stage 1, before a single screen existed, and Nielsen's usability heuristics (visibility of system status, error prevention, consistency and standards, user control and freedom).</p>
+            <p>The goal wasn't to find nothing wrong. It was to find real problems and show the reasoning behind fixing them — that process matters more here than a clean result would.</p>
+          </div>
+
+          <div class="finding-list">
+
+            <div class="finding-card severity-high">
+              <div class="finding-top">
+                <div class="finding-title">A hardcoded parent name broke on every stop but one</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-high">High severity</span>
+                  <span class="finding-tag">Match between system &amp; real world</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>The "Call Parent" action on the no-show screen was hardcoded to a specific parent's name from an earlier screen. On any other child's stop, it called the wrong parent entirely.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>In a safety product built around trust, a driver calling the wrong parent during a no-show isn't a cosmetic bug — it's the exact failure the product exists to prevent.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Replaced the hardcoded name with a generic "Call Parent" action, with the child's name shown underneath instead. Now correct on every stop, for any child, without needing a fix per screen.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">Two arrival screens ran two different countdown timers for the same wait</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">Consistency &amp; standards</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>The Arrive at House screen and the Child Not at Door screen each showed a different number for what was meant to be one continuous 3-minute wait.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>Two numbers for one wait reads as two separate systems, not one — a driver glancing quickly could misjudge how much time is actually left.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Unified both screens to one continuous countdown, so the timer means the same thing no matter which screen the driver is looking at.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">A non-functional button sat next to the one real action</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">User control &amp; freedom</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>"Wait 1 more minute" on the no-show screen didn't do anything — the wait was already the default state of the screen, so tapping it had no effect.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>A button that looks actionable but isn't costs a driver a real decision under time pressure, for nothing.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Replaced it with "Call Parent" — a genuinely different, useful option alongside "Notify parent, leaving now," so the driver has two real choices instead of one real choice and one decoy.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">Visual weight worked against the intended decision order</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">Recognition over recall</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>Once "Call Parent" was added, it was styled as a small secondary link while "Notify parent, leaving now" stayed a bold full-width red button, positioned above it.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>Trying to reach the parent should come before giving up on the pickup — but the original layout visually pushed a rushed driver toward the more drastic option first.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Gave "Call Parent" equal visual weight and placed it first, so the button hierarchy actually matches the order a driver should reasonably try things in.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card">
+              <div class="finding-top">
+                <div class="finding-title">Two shades of green were quietly carrying the same meaning</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-low">Low severity</span>
+                  <span class="finding-tag">Consistency &amp; standards</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>The "In vehicle" status badge and one confirmation icon used a duller, olive-toned green, while every other confirmed/success state across both flows used the same saturated mint green.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>When one colour is meant to mean "this is fine," rendering it two different ways reads as unintentional rather than deliberate — small, but it's the kind of detail that separates a system from a set of one-off screens.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Standardised both to the same green used everywhere else confirmation is shown.</p></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eval-minor">
+            <div class="eval-minor-label">Also checked, no action needed</div>
+            <ul>
+              <li><strong>Colour audit —</strong> the red "Confirmed" tag I initially flagged on the driver dashboard turned out to already read correctly on inspection; verifying it stayed correct mattered more here than assuming it was broken.</li>
+              <li><strong>Copy pass —</strong> corrected several smaller grammar and spelling errors across both flows (subject-verb agreement, missing letters, an ambiguous list) caught during the same walkthrough.</li>
             </ul>
           </div>
+        </section>
+
+        <!-- 9. Stage 6 — Roadmap -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">What's Next</h2>
 
           <div class="roadmap-card">
             <div class="roadmap-label">○ Stage 6 — Strategic Leadership Thinking</div>
-            <h3>Following testing, not before it</h3>
-            <p>This final stage connects Fika's design decisions to business outcomes — the monetisation model, what actually drives retention, and how a trust-building product like this creates defensible value for a transport company rather than just a nice user experience. It's sequenced after usability testing on purpose: real user feedback should inform which business risks get prioritised first, not the other way around.</p>
+            <h3>Following evaluation, not before it</h3>
+            <p>This final stage connects Fika's design decisions to business outcomes — the monetisation model, what actually drives retention, and how a trust-building product like this creates defensible value for a transport company rather than just a nice user experience. It's sequenced after evaluation on purpose: the issues found above should inform which business risks get prioritised first, not the other way around.</p>
           </div>
         </section>
 
@@ -859,7 +996,7 @@
           <div class="pdf-block">
             <div class="pdf-block-label">Full Documentation</div>
             <h3>Read Stages 1–4 in full</h3>
-            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, journey maps, the complete design system, and all 8 featured screens — documented in complete detail. A full version covering Stages 5–6 will replace this once usability testing and strategic thinking are complete.</p>
+            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, journey maps, the complete design system, and all 8 featured screens — documented in complete detail. A full version covering Stages 5–6 will replace this once strategic thinking is complete.</p>
             <a href="documents/fika-case-study-stages-1-4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-block;">Download PDF</a>
           </div>
         </section>

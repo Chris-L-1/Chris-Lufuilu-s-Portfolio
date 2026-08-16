@@ -724,15 +724,25 @@
 
         <!-- 7. Stage 4 — Design System & Screens -->
         <section class="case-section reveal">
-          <h2 class="case-section-title">Stage 4 — High-Fidelity Screens</h2>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <h2 class="case-section-title" style="margin-bottom:0;">Stage 4 — High-Fidelity Screens</h2>
+            <a href="https://www.figma.com/design/lIfw1f8HXvDn8QoGYcuwos/Untitled?node-id=0-1&t=wBoPD52hBtiGL1fH-1"
+               target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+               style="font-size:0.72rem; padding: 0.55rem 1.1rem; white-space:nowrap;">
+              View in Figma
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
           <p>All 25 screens — 12 parent-facing, 13 driver-facing — built in Figma on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done.</p>
 
           <div class="ds-grid">
             <div class="ds-card">
               <div class="ds-card-label">Colour System</div>
-              <div class="ds-swatch-row">
+              <div class="ds-swatch-row" style="flex-wrap:wrap; gap:0.75rem;">
                 <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#ffffff;"></div>
+                  <div class="ds-swatch-color" style="background:#ffffff; border: 1px solid #333;"></div>
                   <div class="ds-swatch-name">Background</div>
                 </div>
                 <div class="ds-swatch">
@@ -743,8 +753,16 @@
                   <div class="ds-swatch-color" style="background:#3d7a3d;"></div>
                   <div class="ds-swatch-name">Accent</div>
                 </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#F59E0B;"></div>
+                  <div class="ds-swatch-name">Amber</div>
+                </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#DC2626;"></div>
+                  <div class="ds-swatch-name">Alert Red</div>
+                </div>
               </div>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Dark green is reserved for primary CTA buttons only, following the 60-30-10 rule — so the one action that matters on each screen always stands out.</p>
+              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Each colour carries a single semantic meaning across both interfaces. Deep Forest and Accent green handle all success and confirmation states. Amber signals caution — GPS warnings, medical notes, and the rejection screen. Red is reserved exclusively for absence and no-show alerts, where a parent or driver needs to act immediately. No colour ever means two things.</p>
             </div>
 
             <div class="ds-card">
@@ -762,7 +780,7 @@
 
           <div class="screen-showcase reveal">
             <div class="screen-showcase-label">Parent Screens</div>
-            <div class="screen-row">
+         <div class="screen-row">
               <div class="screen-item">
                 <img src="images/screens/Welcome screen.png" alt="Fika Welcome screen" />
                 <div class="screen-item-title">Welcome</div>
@@ -785,7 +803,7 @@
               </div>
             </div>
 
-            <div class="screen-showcase-label">Driver Screens</div>
+       <div class="screen-showcase-label">Driver Screens</div>
             <div class="screen-row" style="margin-bottom: 0;">
               <div class="screen-item">
                 <img src="images/screens/Home shift dashboard.png" alt="Fika driver home shift dashboard" />
@@ -840,9 +858,9 @@
         <section class="case-section reveal">
           <div class="pdf-block">
             <div class="pdf-block-label">Full Documentation</div>
-            <h3>Read Stages 1–3 in full</h3>
-            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, and journey maps — documented in complete detail. A full version covering Stages 4–6 will replace this once usability testing and strategic thinking are complete.</p>
-            <a href="documents/fika-case-study-stages-1-3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-block;">Download PDF</a>
+            <h3>Read Stages 1–4 in full</h3>
+            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, journey maps, the complete design system, and all 8 featured screens — documented in complete detail. A full version covering Stages 5–6 will replace this once usability testing and strategic thinking are complete.</p>
+            <a href="documents/fika-case-study-stages-1-4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-block;">Download PDF</a>
           </div>
         </section>
 
