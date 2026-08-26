@@ -143,6 +143,37 @@
         margin: 0;
       }
 
+      .compare-table-wrap {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin: 1.5rem 0;
+      }
+      .compare-table { width: 100%; border-collapse: collapse; }
+      .compare-table th, .compare-table td {
+        padding: 0.9rem 1.2rem;
+        text-align: left;
+        font-size: 0.88rem;
+      }
+      .compare-table th {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border);
+      }
+      .compare-table th:first-child { color: var(--text-secondary); font-family: inherit; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+      .compare-table td:first-child { color: var(--text-primary); }
+      .compare-table tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+      .compare-table td { color: var(--text-secondary); }
+      .compare-yes { color: var(--accent); font-weight: 600; }
+      .compare-no { color: #B45309; }
+      .compare-note { font-size: 0.78rem; color: var(--text-secondary); }
+      @media (max-width: 640px) {
+        .compare-table th, .compare-table td { padding: 0.7rem 0.7rem; font-size: 0.78rem; }
+      }
+
       .research-quote {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -504,6 +535,90 @@
           <p>When a parent puts their child in a car for the first time and it drives away, they do not feel relief. They feel controlled anxiety. Fika's real design challenge is: <strong>how do you convert first-time anxiety into earned trust, one trip at a time?</strong></p>
         </section>
 
+        <!-- 2a. Comparison -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Why Not Just Use Uber?</h2>
+          <p>Uber's Teen accounts are a real, credible safety feature, not a strawman to dismiss. The honest comparison is against what Uber actually offers today, and against the informal transport parents already rely on.</p>
+          <div class="compare-table-wrap">
+            <table class="compare-table">
+              <tr>
+                <th>Criteria</th>
+                <th>Fika</th>
+                <th>Uber (Teen)</th>
+                <th>Informal Transport</th>
+              </tr>
+              <tr>
+                <td>Real-time tracking</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No</td>
+              </tr>
+              <tr>
+                <td>Same driver every day</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No <span class="compare-note">(matched per trip)</span></td>
+                <td class="compare-yes">Yes</td>
+              </tr>
+              <tr>
+                <td>Fixed monthly price</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No <span class="compare-note">(standard per-trip pricing)</span></td>
+                <td class="compare-note">Varies</td>
+              </tr>
+              <tr>
+                <td>Serves children under 13</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No <span class="compare-note">(13 to 17 only)</span></td>
+                <td class="compare-yes">Yes</td>
+              </tr>
+              <tr>
+                <td>Background-checked, employed driver</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No</td>
+              </tr>
+              <tr>
+                <td>Formal company accountability</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No</td>
+              </tr>
+              <tr>
+                <td>Built around fixed daily school schedule</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No <span class="compare-note">(on-demand only)</span></td>
+                <td class="compare-yes">Yes <span class="compare-note">(informally)</span></td>
+              </tr>
+            </table>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Fika's real value isn't beating either option on every line, it's combining the daily consistency and trust that informal transport already gets right with the formal accountability neither informal transport nor a general ride-hailing app was built to offer a nine-year-old.</p>
+        </section>
+
+        <!-- 2b. Research Findings -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Grounded in Research, Not Assumptions</h2>
+          <p>Two structured, one on one interviews, one with a parent, one with a driver. Not a large-scale study, and the case study says so plainly rather than implying otherwise. For a problem this rooted in trust and emotion, depth mattered more than a bigger sample size that two people couldn't have provided anyway: understanding how one parent and one driver actually felt surfaced things a multiple choice survey would have missed.</p>
+          <div class="cs-stat-row" style="margin: 1.5rem 0 2rem 0;">
+            <div class="cs-stat">
+              <div class="cs-stat-number">8</div>
+              <div class="cs-stat-label">Parent Findings</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-number">13</div>
+              <div class="cs-stat-label">Driver Findings</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-number">21</div>
+              <div class="cs-stat-label">Total Findings</div>
+            </div>
+          </div>
+          <div class="cross-insight">
+            <div class="cross-insight-label">Independent Convergence, Not a Shared Assumption</div>
+            <p>Nomsa described sitting at work with her phone off, not knowing if her children arrived safely. Sipho, interviewed separately and never told what Nomsa said, described having no record to show a mother who wrongly accused him of not doing his job.</p>
+            <p style="margin-top: 1rem;">Two strangers, describing the same gap from opposite sides, without prompting. That convergence is what turned a hunch into the product's core insight: the parent has no visibility, the driver has no proof, and one feature closes both gaps at once.</p>
+          </div>
+        </section>
+
         <!-- 3. Two Users -->
         <section class="case-section reveal">
           <h2 class="case-section-title">Two Users. One Problem.</h2>
@@ -519,10 +634,6 @@
               <h3>Protection</h3>
               <p>A vetted driver responsible for other people's children. They need verifiable records of every pickup and drop-off so they cannot be falsely accused of something they did not do.</p>
             </div>
-          </div>
-          <div class="cross-insight">
-            <div class="cross-insight-label">Core Product Insight: Confirmed by Independent Research</div>
-            <p>The parent has no visibility. The driver has no proof. The same timestamped confirmation solves both problems simultaneously. One feature. Two users. Multiple problems resolved.</p>
           </div>
         </section>
 
