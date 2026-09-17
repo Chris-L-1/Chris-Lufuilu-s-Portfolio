@@ -1145,7 +1145,105 @@
           </div>
         </section>
 
-        <!-- 7. Full Documentation -->
+        <!-- 10. Stage 7: Screen-Completeness Audit -->
+        <section class="case-section reveal">
+          <h2 class="case-section-title">Stage 7: The Screen-Completeness Audit</h2>
+
+          <div class="eval-method">
+            <p>Stage 5 asked whether each screen worked well on its own. This pass asked a different question: does the product hold together as a whole, does every button lead somewhere real, and does it actually do what its own copy claims. That turned out to be a different kind of check, and it found different kinds of problems, some of them bigger than anything Stage 5 caught.</p>
+            <p>I went through both flows screen by screen, end to end, checking every stated destination against what actually existed.</p>
+          </div>
+
+          <div class="finding-list">
+
+            <div class="finding-card severity-high">
+              <div class="finding-top">
+                <div class="finding-title">The driver had no way to reach emergency help, despite the app telling him to</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-high">High severity</span>
+                  <span class="finding-tag">Help and documentation</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>Driver Contact Support's own copy says: "If a child's safety is at risk right now, don't wait for a reply here, call the FIKA emergency line directly." That line didn't exist anywhere in the driver flow, no screen, no number, no button. The parent side had a full Emergency screen with one-tap calling. The driver, physically present with a child mid-allergic-reaction distance from an EpiPen, had a sentence promising help that wasn't there.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>This is the one gap in the whole audit I'd call actually dangerous rather than inconvenient. A safety product can't have its most safety-critical path be the one that's missing.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Built a driver Emergency screen mirroring the parent's: one-tap Emergency Services, one-tap call to the parents of whoever's currently in the vehicle, one-tap FIKA emergency line, with the current trip and location shared automatically. Added a real entry point from the driver dashboard.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-high">
+              <div class="finding-top">
+                <div class="finding-title">Half the service being sold didn't exist in the driver flow</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-high">High severity</span>
+                  <span class="finding-tag">Match between system &amp; real world</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>The parent-side subscription screen explicitly sells "Morning pickup + Afternoon drop-off." Every driver screen was built one-directionally: pick up from a house, drop off at a school. There was no afternoon leg, no way to run the return journey, and nothing on the driver dashboard even acknowledging a second shift happens later the same day.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>This isn't an edge case that got missed, it's half of what a parent is paying for. A case study can't claim to model the product end to end while quietly only modelling the morning.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Designed the return leg as its own short loop: an afternoon dashboard state, a combined pickup manifest, a school-pickup screen using the same batch-confirm pattern as the morning drop-off (just reversed), and a home drop-off screen with one addition the morning side didn't need, confirming a parent or guardian is actually there before a child gets out.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">A promised tracking screen didn't exist on the parent side either</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">Visibility of system status</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>Four separate places pointed to a live tracking view that was never built: the bottom nav's Track tab, the Home dashboard's "Live tracking" quick action, the first-trip screen's "Track on map" button, and the arrival notification's "Open full map" button. Four doors, no room behind any of them.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>Live tracking is the specific thing Stage 6 names as the daily proof that keeps a parent subscribed. The one screen doing the most retention work in the whole product was the one screen that was missing.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Built the tracking screen: live map, driver and vehicle info, one-tap call, and a per-child progress indicator matching the pattern already used on the Home dashboard, so it reads as part of the same system rather than a bolted-on addition.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">Two screens were quietly doing the same job</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">Consistency &amp; standards</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>Start Shift and Today's Manifest both summarised the same six children and three schools, each with its own "let's go" button, and neither had an unambiguous reason to be the one the other led to. Wiring up the prototype kept breaking at exactly this point, which is what surfaced the problem in the first place.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>When two screens compete for the same job, there's no correct answer for where either one's button should go, because the real problem isn't the connection, it's that one of the screens shouldn't exist.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Merged them into one screen. Kept the detailed per-child list from Today's Manifest, since it already carried Amahle's allergy note inline, and folded Start Shift's one genuinely unique detail, the estimated route time, into the header.</p></div>
+              </div>
+            </div>
+
+            <div class="finding-card severity-medium">
+              <div class="finding-top">
+                <div class="finding-title">The drop-off screen only knew how to handle one child at a time</div>
+                <div class="finding-tags">
+                  <span class="finding-tag severity-medium">Medium severity</span>
+                  <span class="finding-tag">Flexibility &amp; efficiency of use</span>
+                </div>
+              </div>
+              <div class="finding-body">
+                <div class="finding-row"><span class="finding-label">Found</span><p>GPS Detects School stated outright, "1 child for this school." But Trip History, sitting one screen away in the same flow, already showed two children delivered together at the same school in a single stop.</p></div>
+                <div class="finding-row"><span class="finding-label">Why it matters</span><p>The pickup side already solved this exact problem, one button, "Picked Up – 2 Children." The drop-off side just hadn't caught up to a case its own data proved was real.</p></div>
+                <div class="finding-row"><span class="finding-label">Fix</span><p>Built a second state of the same screen using the same batch-confirm pattern as pickup, with a secondary "only one getting off here" path for the exception rather than the default.</p></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eval-minor">
+            <div class="eval-minor-label">Smaller fixes from the same pass</div>
+            <ul>
+              <li><strong>Repeated section labels:</strong> a settings screen labelled two different sections "Vehicle," and an incident report labelled two different fields "Type of Incident." Both were the same underlying mistake, a frame duplicated to build the next section without updating the label sitting above it. Both relabelled.</li>
+              <li><strong>Timestamps that didn't match the shift:</strong> several screens were still showing a placeholder time hours outside the actual 6:00–7:47 AM shift window. Corrected against the real sequence.</li>
+              <li><strong>Scope decision:</strong> chose not to design a separate screen for every individual pickup and drop-off. A screen is a template, not a one-off per child, so one worked example of each pattern plus a clear transition screen between the pickup and drop-off loops carries the same design thinking without padding the flow with four near-identical repeats.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 11. Full Documentation -->
         <section class="case-section reveal">
           <div class="pdf-block">
             <div class="pdf-block-label">Full Documentation</div>
