@@ -77,6 +77,7 @@
         gap: 0.75rem;
         margin: 1.5rem 0;
       }
+      .stage-tracker .stage-pill:last-child { grid-column: 1 / -1; }
       @media (max-width: 600px) { .stage-tracker { grid-template-columns: 1fr 1fr; } }
       .stage-pill {
         background: var(--bg-card);
@@ -447,7 +448,7 @@
           </div>
           <div class="case-meta-item">
             <div class="case-meta-label">Methods</div>
-            <div class="case-meta-value">Empathy Research · Qualitative Interviews · IA · Wireframing</div>
+            <div class="case-meta-value">Empathy Research · Qualitative Interviews · IA · High-Fidelity Design · Usability Evaluation</div>
           </div>
           <div class="case-meta-item">
             <div class="case-meta-label">Tools</div>
@@ -473,7 +474,7 @@
         <div class="in-progress-banner reveal">
           <div class="in-progress-dot"></div>
           <div class="in-progress-text">
-            <strong>Case study complete.</strong> All six stages are done: research, IA, the 48-screen high-fidelity prototype, a full heuristic self-evaluation, and the strategic thinking behind it.
+            <strong>Self-initiated concept project.</strong> Research, information architecture, high-fidelity screens for both interfaces, a self-evaluation, and a screen-completeness audit. Built from two interviews; not yet tested with users.
           </div>
         </div>
 
@@ -482,9 +483,10 @@
           <div class="stage-pill complete">✓ Stage 1: Empathy</div>
           <div class="stage-pill complete">✓ Stage 2: Research</div>
           <div class="stage-pill complete">✓ Stage 3: IA</div>
-          <div class="stage-pill complete">✓ Stage 4: Wireframes</div>
+          <div class="stage-pill complete">✓ Stage 4: Hi-Fi Screens</div>
           <div class="stage-pill complete">✓ Stage 5: Evaluation</div>
           <div class="stage-pill complete">✓ Stage 6: Strategy</div>
+          <div class="stage-pill complete">✓ Stage 7: Audit</div>
         </div>
 
         <!-- Stats -->
@@ -498,15 +500,15 @@
             <div class="cs-stat-label">Research Findings</div>
           </div>
           <div class="cs-stat">
-            <div class="cs-stat-number">48</div>
-            <div class="cs-stat-label">Hi-Fi Screens</div>
+            <div class="cs-stat-number">8</div>
+            <div class="cs-stat-label">Key Screens Shown</div>
           </div>
           <div class="cs-stat">
             <div class="cs-stat-number">3s</div>
             <div class="cs-stat-label">Max Driver Screen Time</div>
           </div>
           <div class="cs-stat">
-            <div class="cs-stat-number">6</div>
+            <div class="cs-stat-number">7</div>
             <div class="cs-stat-label">UX Stages</div>
           </div>
         </div>
@@ -572,9 +574,15 @@
                 <td class="compare-yes">Yes</td>
               </tr>
               <tr>
-                <td>Background-checked, employed driver</td>
+                <td>Background-checked drivers</td>
                 <td class="compare-yes">Yes</td>
                 <td class="compare-yes">Yes</td>
+                <td class="compare-no">No</td>
+              </tr>
+              <tr>
+                <td>Company-employed drivers</td>
+                <td class="compare-yes">Yes</td>
+                <td class="compare-no">No <span class="compare-note">(independent drivers)</span></td>
                 <td class="compare-no">No</td>
               </tr>
               <tr>
@@ -586,7 +594,7 @@
               <tr>
                 <td>Built around fixed daily school schedule</td>
                 <td class="compare-yes">Yes</td>
-                <td class="compare-no">No <span class="compare-note">(on-demand only)</span></td>
+                <td class="compare-no">No <span class="compare-note">(booked trip by trip)</span></td>
                 <td class="compare-yes">Yes <span class="compare-note">(informally)</span></td>
               </tr>
             </table>
@@ -614,8 +622,8 @@
           </div>
           <div class="cross-insight">
             <div class="cross-insight-label">Independent Convergence, Not a Shared Assumption</div>
-            <p>Nomsa described sitting at work with her phone off, not knowing if her children arrived safely. Sipho, interviewed separately and never told what Nomsa said, described having no record to show a mother who wrongly accused him of not doing his job.</p>
-            <p style="margin-top: 1rem;">Two strangers, describing the same gap from opposite sides, without prompting. That convergence is what turned a hunch into the product's core insight: the parent has no visibility, the driver has no proof, and one feature closes both gaps at once.</p>
+            <p>Nomsa described sitting at work with her phone off, not knowing if her children arrived safely. Sipho, interviewed separately, described having no record to show a mother who wrongly accused him of not doing his job.</p>
+            <p style="margin-top: 1rem;">Two people who don't know each other, describing the same gap from opposite sides. That convergence is what turned a hunch into the product's core insight: the parent has no visibility, the driver has no proof, and one feature closes both gaps at once.</p>
           </div>
         </section>
 
@@ -900,7 +908,7 @@
               </svg>
             </a>
           </div>
-          <p>The prototype runs to 48 screens in Figma, 20 parent-facing and 28 driver-facing, but the goal was never to design a full app. It covers what matters most to parents and drivers, the moments the research said the product has to get right. Everything sits on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done. Eight of those screens are shown here.</p>
+          <p>The full prototype is in Figma, covering both the parent and driver interfaces, but the goal was never to design a full app. It covers what matters most to parents and drivers, the moments the research said the product has to get right. Everything sits on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done. Eight of those screens are shown here.</p>
 
           <div class="ds-grid">
             <div class="ds-card">
@@ -915,8 +923,8 @@
                   <div class="ds-swatch-name">Deep Forest</div>
                 </div>
                 <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#3d7a3d;"></div>
-                  <div class="ds-swatch-name">Accent</div>
+                  <div class="ds-swatch-color" style="background:#03702B;"></div>
+                  <div class="ds-swatch-name">Action Green</div>
                 </div>
                 <div class="ds-swatch">
                   <div class="ds-swatch-color" style="background:#F59E0B;"></div>
@@ -927,14 +935,14 @@
                   <div class="ds-swatch-name">Alert Red</div>
                 </div>
               </div>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Each colour carries a single semantic meaning across both interfaces. Deep Forest and Accent green handle all success and confirmation states. Amber signals caution: GPS warnings, medical notes, and the rejection screen. Red is reserved exclusively for absence and no-show alerts, where a parent or driver needs to act immediately. No colour ever means two things.</p>
+              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Each colour carries a single semantic meaning across both interfaces. Deep Forest and Action Green handle success and confirmation states. Amber signals caution: GPS warnings and medical notes. Red is reserved for urgent states only, absence and no-show alerts and emergencies, where a parent or driver needs to act immediately.</p>
             </div>
 
             <div class="ds-card">
               <div class="ds-card-label">Typography</div>
               <div class="ds-type-sample">
                 <strong style="font-family: var(--font-display);">DM Serif Display</strong>
-                Headlines only: 28-32px, bold. Gives Fika warmth against an otherwise functional app.
+                Headlines only, regular weight. Gives Fika warmth against an otherwise functional app.
               </div>
               <div class="ds-type-sample">
                 <strong>DM Sans</strong>
@@ -1237,7 +1245,7 @@
             <div class="eval-minor-label">Smaller fixes from the same pass</div>
             <ul>
               <li><strong>Repeated section labels:</strong> a settings screen labelled two different sections "Vehicle," and an incident report labelled two different fields "Type of Incident." Both were the same underlying mistake, a frame duplicated to build the next section without updating the label sitting above it. Both relabelled.</li>
-              <li><strong>Timestamps that didn't match the shift:</strong> several screens were still showing a placeholder time hours outside the actual 6:00–7:47 AM shift window. Corrected against the real sequence.</li>
+              <li><strong>Timestamps that didn't match the shift:</strong> several screens were still showing a placeholder time hours outside the actual morning shift window. Corrected against the real sequence.</li>
               <li><strong>Scope decision:</strong> chose not to design a separate screen for every individual pickup and drop-off. A screen is a template, not a one-off per child, so one worked example of each pattern plus a clear transition screen between the pickup and drop-off loops carries the same design thinking without padding the flow with four near-identical repeats.</li>
             </ul>
           </div>
@@ -1248,7 +1256,7 @@
           <div class="pdf-block">
             <div class="pdf-block-label">Full Documentation</div>
             <h3>Read Stages 1–4 in full</h3>
-            <p>Empathy maps, full research transcripts, synthesis clusters, How Might We questions, journey maps, the complete design system, and all 8 featured screens, documented in complete detail.</p>
+            <p>Empathy maps, research findings, synthesis clusters, How Might We questions, personas, journey maps, information architecture, and the design system.</p>
             <a href="documents/fika-case-study-stages-1-4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-block;">Download PDF</a>
           </div>
         </section>
