@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fika: Student Transport App · Chris Lufuilu</title>
     <meta name="description"
-      content="Case study: Fika, a child-only student transport app designed for Cape Town parents and drivers." />
+      content="Case study: Fika, a child-only school transport app for Cape Town, with one interface for parents and one for drivers." />
     <link rel="stylesheet" href="style.css" />
     <style>
       @keyframes forceShow {
@@ -295,7 +295,7 @@
       .ds-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; }
       .ds-card-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
       .ds-swatch-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-      .ds-swatch { flex: 1; text-align: center; }
+      .ds-swatch { flex: 1 1 28%; min-width: 0; text-align: center; }
       .ds-swatch-color { width: 100%; aspect-ratio: 1; border-radius: 8px; margin-bottom: 0.4rem; border: 1px solid var(--border); }
       .ds-swatch-name { font-size: 0.68rem; color: var(--text-secondary); }
       .ds-type-sample { font-size: 0.82rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
@@ -460,6 +460,16 @@
           </div>
         </div>
 
+        <div class="reveal reveal-delay-2" style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 0 0 2rem 0;">
+          <a href="https://www.figma.com/design/lIfw1f8HXvDn8QoGYcuwos/FIKA?node-id=0-1&amp;t=Oms2Macs1N2byuaW-1"
+             target="_blank" rel="noopener noreferrer" class="btn"
+             style="background:#03702B; color:#fff; border:1px solid #03702B; display:inline-flex; align-items:center; gap:0.5rem;">
+            View the Figma file
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          </a>
+          <a href="#deck" class="btn btn-outline">Download the case study deck</a>
+        </div>
+
         <div class="reveal" style="aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden; background: #0F2A0F; display:flex; align-items:center; justify-content:center;">
           <img src="images/cover.png" alt="Fika Welcome and Arrived screens"
             style="height:100%; width:auto; object-fit: contain;" />
@@ -500,8 +510,8 @@
             <div class="cs-stat-label">Research Findings</div>
           </div>
           <div class="cs-stat">
-            <div class="cs-stat-number">8</div>
-            <div class="cs-stat-label">Key Screens Shown</div>
+            <div class="cs-stat-number">50</div>
+            <div class="cs-stat-label">Hi-Fi Screens</div>
           </div>
           <div class="cs-stat">
             <div class="cs-stat-number">3s</div>
@@ -892,7 +902,7 @@
             <div class="cross-insight-label">The Core IA Insight</div>
             <p>The parent's tracking screen and the driver's active route screen are powered by the same live data. The parent sees the car moving toward the school. The driver generates that movement. One data source. Two interfaces. Two users served simultaneously.</p>
           </div>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Full user journey maps for both Nomsa and Sipho, covering every stage from morning preparation to first confirmation, are documented in the complete PDF.</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Full user journey maps for both Nomsa and Sipho, covering every stage from morning preparation to first confirmation, are in the case study deck at the bottom of this page.</p>
         </section>
 
         <!-- 7. Stage 4: Design System & Screens -->
@@ -908,16 +918,12 @@
               </svg>
             </a>
           </div>
-          <p>The full prototype is in Figma, covering both the parent and driver interfaces, but the goal was never to design a full app. It covers what matters most to parents and drivers, the moments the research said the product has to get right. Everything sits on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done. Eight of those screens are shown here.</p>
+          <p>The prototype runs to 50 screens in Figma, 21 parent-facing and 29 driver-facing, but the goal was never to design a full app. It covers what matters most to parents and drivers, the moments the research said the product has to get right. Everything sits on a single design system, so both interfaces feel like one product even though they're built for two very different jobs to be done. Eight of those screens are shown here.</p>
 
           <div class="ds-grid">
             <div class="ds-card">
               <div class="ds-card-label">Colour System</div>
               <div class="ds-swatch-row" style="flex-wrap:wrap; gap:0.75rem;">
-                <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#ffffff; border: 1px solid #333;"></div>
-                  <div class="ds-swatch-name">Background</div>
-                </div>
                 <div class="ds-swatch">
                   <div class="ds-swatch-color" style="background:#0F2A0F;"></div>
                   <div class="ds-swatch-name">Deep Forest</div>
@@ -927,15 +933,23 @@
                   <div class="ds-swatch-name">Action Green</div>
                 </div>
                 <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#F59E0B;"></div>
+                  <div class="ds-swatch-color" style="background:#DDEADD;"></div>
+                  <div class="ds-swatch-name">Confirmed</div>
+                </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#F2C6C6;"></div>
+                  <div class="ds-swatch-name">Absent</div>
+                </div>
+                <div class="ds-swatch">
+                  <div class="ds-swatch-color" style="background:#DC8E40;"></div>
                   <div class="ds-swatch-name">Amber</div>
                 </div>
                 <div class="ds-swatch">
-                  <div class="ds-swatch-color" style="background:#DC2626;"></div>
-                  <div class="ds-swatch-name">Alert Red</div>
+                  <div class="ds-swatch-color" style="background:#BC3E3C;"></div>
+                  <div class="ds-swatch-name">Emergency</div>
                 </div>
               </div>
-              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Each colour carries a single semantic meaning across both interfaces. Deep Forest and Action Green handle success and confirmation states. Amber signals caution: GPS warnings and medical notes. Red is reserved for urgent states only, absence and no-show alerts and emergencies, where a parent or driver needs to act immediately.</p>
+              <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin:0;">Colour carries meaning across both interfaces. Deep Forest and Action Green give structure and the primary action, and the soft green marks a confirmed child. A soft red tint marks an absent child. Amber draws attention to caution details such as medical notes. The stronger red is kept for urgent actions and the Emergency screens.</p>
             </div>
 
             <div class="ds-card">
@@ -1173,7 +1187,7 @@
                 </div>
               </div>
               <div class="finding-body">
-                <div class="finding-row"><span class="finding-label">Found</span><p>Driver Contact Support's own copy says: "If a child's safety is at risk right now, don't wait for a reply here, call the FIKA emergency line directly." That line didn't exist anywhere in the driver flow, no screen, no number, no button. The parent side had a full Emergency screen with one-tap calling. The driver, physically present with a child mid-allergic-reaction distance from an EpiPen, had a sentence promising help that wasn't there.</p></div>
+                <div class="finding-row"><span class="finding-label">Found</span><p>Driver Contact Support's own copy says: "If a child's safety is at risk right now, don't wait for a reply here, call the FIKA emergency line directly." That line didn't exist anywhere in the driver flow, no screen, no number, no button. The parent side had a full Emergency screen with one-tap calling. The driver, physically present with children in the vehicle, had a sentence promising help that wasn't there.</p></div>
                 <div class="finding-row"><span class="finding-label">Why it matters</span><p>This is the one gap in the whole audit I'd call actually dangerous rather than inconvenient. A safety product can't have its most safety-critical path be the one that's missing.</p></div>
                 <div class="finding-row"><span class="finding-label">Fix</span><p>Built a driver Emergency screen mirroring the parent's: one-tap Emergency Services, one-tap call to the parents of whoever's currently in the vehicle, one-tap FIKA emergency line, with the current trip and location shared automatically. Added a real entry point from the driver dashboard.</p></div>
               </div>
@@ -1252,7 +1266,7 @@
         </section>
 
         <!-- 11. Full Documentation -->
-        <section class="case-section reveal">
+        <section class="case-section reveal" id="deck">
           <div class="pdf-block">
             <div class="pdf-block-label">Case Study Deck</div>
             <h3>Download the Fika presentation</h3>
